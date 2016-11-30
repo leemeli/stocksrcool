@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './Footer';
 
 //a "root" component
 class App extends React.Component {
@@ -6,9 +7,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello React!</h1>
-        <p>If you can see this, then things are working!</p>
-        <p>Modify the <code>src/App.js</code> file to define your components</p>
+        <div>{this.props.children}</div>
+        <Footer />
       </div>
     );
   }
