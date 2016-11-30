@@ -11,7 +11,7 @@ class SignIn extends React.Component {
                 <header role="banner">
                     <h1>Stocks R Us</h1>
                     <div className="container">
-                        <div className="login well">
+                        <div className="login">
                             <h3>Login</h3>
                             <form method="post" action="index.html">
                                 <p>
@@ -31,46 +31,6 @@ class SignIn extends React.Component {
                         </div>
                     </div>
                 </header>
-                <div className="container">
-                    <h3>Start exploring our virtual stock market by signing up!</h3>
-                    <div className="well container-fluid">
-                        <form role="form" className="sign-up-form" action="#">
-                            <ul className="signup list-unstyled">
-                                <div className="form-group col-xs-6 col-sm-3">
-                                    <li>
-                                        <label className="control-label">Name</label>
-                                        <input className="form-control" type="text" name="first_name" placeholder="Jack Johnson" />
-                                    </li>
-                                </div>
-                                <div className="form-group col-xs-6 col-sm-3">
-                                    <li>
-                                        <label className="control-label">Email {/*space*/} <span className="req">*</span></label>
-                                        <input className="form-control" type="text" name="last_name" placeholder="jack.johnson@gmail.com" />
-                                    </li>
-                                </div>
-                                <div className="form-group col-xs-6 col-sm-3">
-                                    <li>
-                                        <label className="control-label">Desired Username</label>
-                                        <input className="form-control" type="text" name="username" placeholder="JackJohnson123" />
-                                    </li>
-                                </div>
-                                <div className="form-group col-xs-6 col-sm-3">
-                                    <li>
-                                        <label className="control-label">Password</label>
-                                        <input className="form-control" type="password" name="password" placeholder="Password" />
-                                    </li>
-                                </div>
-                                <div className="form-group">
-                                    <li>
-                                        <input className="btn btn-submit" type="submit" value="Register" />
-                                    </li>
-                                </div>
-                            </ul>
-                        </form>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore cumque, obcaecati ex eveniet reiciendis, quaerat placeat itaque totam magnam aperiam repellat quis possimus perspiciatis debitis incidunt. Natus molestiae non nobis.</p>
-                    <p>Excepturi, vitae veniam doloremque nihil reprehenderit adipisci, perspiciatis, assumenda laudantium molestiae blanditiis tempore saepe odio. Ipsum nobis, nulla molestias. Alias dolorem voluptatem, voluptatibus eveniet, aspernatur nesciunt cumque iste sint sed.</p>
-                </div>
             </div>
         );
     }
