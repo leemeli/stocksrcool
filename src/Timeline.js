@@ -3,6 +3,7 @@ import React from 'react';
 export default class Timeline extends React.Component {
     render(){
         return(
+            <div>
             <ul class="timeline" id="timelineGraph">
                 <li><a href="#1day">1d</a></li>
                 <li><a href="#1month">1m</a></li>
@@ -12,6 +13,7 @@ export default class Timeline extends React.Component {
                 <li><a href="#max">Max</a></li>
              </ul>
              {/* Insert Stock Timeline Graph from API here */}
+             </div>
         );
     }
 }

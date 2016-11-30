@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App'; //import our component
 import {Router, Route, hashHistory} from 'react-router';
 import SignIn from './SignIn';
-import MainPage form './Main';
+import MainPage from './Main';
 //can load other CSS files (e.g,. Bootstrap) here
 
 //load our CSS file

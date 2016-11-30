@@ -6,13 +6,14 @@ import Timeline from './Timeline';
 export default class MainPage extends React.Component {
     render(){
         return(
-             <Nav/>
-
+    <div>
+    <Nav/>
     <main role="main">
         <PoliticalBar />
         <Timeline />
         <StockTable />
     </main>
+    </div>
         );
     }
 }

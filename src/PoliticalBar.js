@@ -9,7 +9,7 @@ export default class PoliticalBar extends React.Component {
                 <li><a href="#trumpPage">Trump Affiliated</a></li>
                 <li><a href="#clintonPage">Clinton Affiliated</a></li>
             </ul>
-            <input type="text" name="search" placeholder="Search here">
+            <input type="text" name="search" placeholder="Search here" />
             </div>
 
         );
