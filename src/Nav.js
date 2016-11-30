@@ -1,7 +1,23 @@
 import React from 'react';
+import firebase from 'firebase';
+import {hashHistory} from 'react-router';
 
 export default class Nav extends React.Component {
+    constructor(props){
+        super(props);
+        this.updateParent = this.props.updateParent;
+        this.signOut = this.signOut.bind(this);
+    }
+
+    //A callback function for logging out the current user
+    signOut(){
+        /* Sign out the user, and update the state */
+        firebase.auth().signOut();
+        this.updateParent({currentUser: null});
+    }
+
     render(){
+        
         return(
          <header role="banner">
 
@@ -16,7 +32,9 @@ export default class Nav extends React.Component {
                 <li><a href="#timeline">My Timeline</a></li>
                 <li><a href="#settings">Settings</a></li>
         </ul>
-        <button type="button">Logout</button>
+        <div className="logout">
+              <button className="btn btn-warning" onClick={()=>this.signOut()}>Sign out</button>
+        </div>
     </header>
         );
     }

@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'; //import our component
-import {Router, Route, hashHistory} from 'react-router';
+import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 import SignIn from './SignIn';
+import SignUpApp from './SignUpApp';
 import MainPage from './Main';
 import firebase from 'firebase';
 import Settings from './Settings';
@@ -25,8 +26,10 @@ import './index.css';
 //render the Application view
 ReactDOM.render(
   <Router history={hashHistory}>
-    <Route path="/" component={App}>
+    <Route path="/" component={MainPage}>
+      <IndexRoute component={SignIn}/>
       <Route path="signin" component={SignIn} />
+      <Route path="signup" component={SignUpApp} />
       <Route path="main" component={MainPage} />
       <Route path="settings" component={Settings} />
     </Route>
