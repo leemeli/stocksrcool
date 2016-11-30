@@ -5,6 +5,7 @@ import {Router, Route, hashHistory} from 'react-router';
 import SignIn from './SignIn';
 import MainPage from './Main';
 import firebase from 'firebase';
+import Settings from './Settings';
 //can load other CSS files (e.g,. Bootstrap) here
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -27,6 +28,7 @@ ReactDOM.render(
     <Route path="/" component={App}>
       <Route path="signin" component={SignIn} />
       <Route path="main" component={MainPage} />
+      <Route path="settings" component={Settings} />
     </Route>
   </Router>,
   document.getElementById('root')
