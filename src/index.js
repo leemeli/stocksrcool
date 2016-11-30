@@ -5,6 +5,8 @@ import {Router, Route, hashHistory} from 'react-router';
 import SignIn from './SignIn';
 import MainPage from './Main';
 //can load other CSS files (e.g,. Bootstrap) here
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 //load our CSS file
 import './index.css';

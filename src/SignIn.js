@@ -1,4 +1,6 @@
 import React from 'react';
+import firebase from 'firebase';
+import loader from 'react-loader';
 
 //Route for SignIn Page
 
@@ -8,62 +10,61 @@ class SignIn extends React.Component {
             <div>
                 <header role="banner">
                     <h1>Stocks R Us</h1>
-                    <div class="container">
-                        <div class="login">
+                    <div className="container">
+                        <div className="login">
                             <h3>Login</h3>
                             <form method="post" action="index.html">
                                 <p>
                                     <input type="text" name="login" placeholder="Username or Email" />
-                                </p>
-                                <p>
+
                                     <input type="password" name="password" placeholder="Password" />
                                 </p>
-                                <p class="remember_login">
+                                <p className="remember_login">
                                     <label>
                                         <input type="checkbox" name="remember_login" id="remember_login" /> Remember me on this computer
                                     </label>
                                 </p>
-                                <p class="submit">
+                                <p className="submit">
                                     <input type="submit" name="commit" value="Login" />
                                 </p>
                             </form>
                         </div>
                     </div>
                 </header>
-                <div class="container">
-                    <div class="row header">
+                <div className="container">
+                    <div className="row header">
                         <h3>Start exploring our virtual stock market by signing up!</h3>
                     </div>
-                    <div class="row body">
+                    <div className="row body">
                         <form action="#">
                             <ul>
                                 <li>
-                                    <p class="left">
+                                    <p className="left">
                                         <label>Name</label>
                                         <input type="text" name="first_name" placeholder="Jack Johnson" />
                                     </p>
                                 </li>
                                 <li>
-                                    <p class="pull-right">
-                                        <label>Email <span class="req">*</span>
+                                    <p className="pull-right">
+                                        <label>Email <span className="req">*</span>
                                         </label>
                                         <input type="text" name="last_name" placeholder="jack.johnson@gmail.com" />
                                     </p>
                                 </li>
                                 <li>
-                                    <p class="left">
+                                    <p className="left">
                                         <label>Desired Username</label>
                                         <input type="text" name="username" placeholder="JackJohnson123" />
                                     </p>
                                 </li>
                                 <li>
-                                    <p class="pull-right">
+                                    <p className="pull-right">
                                         <label>Password</label>
                                         <input type="password" name="password" placeholder="Password" />
                                     </p>
                                 </li>
                                 <li>
-                                    <input class="btn btn-submit" type="submit" value="Register" />
+                                    <input className="btn btn-submit" type="submit" value="Register" />
                                 </li>
                             </ul>
                         </form>
