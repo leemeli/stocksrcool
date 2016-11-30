@@ -6,7 +6,6 @@ import SignIn from './SignIn';
 //can load other CSS files (e.g,. Bootstrap) here
 import 'bootstrap/dist/css/bootstrap.css';
 
-
 //load our CSS file
 import './index.css';
 
