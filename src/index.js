@@ -4,12 +4,23 @@ import App from './App'; //import our component
 import {Router, Route, hashHistory} from 'react-router';
 import SignIn from './SignIn';
 import MainPage from './Main';
+import firebase from 'firebase';
 //can load other CSS files (e.g,. Bootstrap) here
 import 'bootstrap/dist/css/bootstrap.css';
 
 
 //load our CSS file
 import './index.css';
+
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBdng3b4dOrrRzHCsGNtintoohihmPzVDU",
+    authDomain: "stocks-r-us.firebaseapp.com",
+    databaseURL: "https://stocks-r-us.firebaseio.com",
+    storageBucket: "stocks-r-us.appspot.com",
+    messagingSenderId: "71820765377"
+  };
+  firebase.initializeApp(config);
 
 //render the Application view
 ReactDOM.render(
