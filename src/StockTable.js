@@ -1,0 +1,18 @@
+import React from 'react';
+
+export default class StockTable extends React.Component {
+    render(){
+        return(
+            <table>
+                <tbody>
+                <tr>
+                    <th>Company</th>
+                    <th>Close Price</th> 
+                    <th>Net Change</th>
+                </tr>
+                    {/* Populate table with stock information from API here*/}
+                </tbody>
+             </table>
+        );
+    }
+}
