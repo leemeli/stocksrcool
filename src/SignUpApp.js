@@ -46,13 +46,7 @@ export default class SignUpApp extends React.Component {
       .then(() => this.forceUpdate()) //bad, but helps demo
       .catch((err) => console.log(err));
   }
-
-//A callback function for logging out the current user
-  signOut(){
-    /* Sign out the user, and update the state */
-    firebase.auth().signOut();
-  }
-
+  
 componentWillUnmount() {
     //when the component is unmounted, unregister using the saved function
     if(this.unregister){ //if have a function to unregister with

@@ -26,8 +26,8 @@ import './index.css';
 //render the Application view
 ReactDOM.render(
   <Router history={hashHistory}>
-    <Route path="/" component={MainPage}>
-      <IndexRoute component={SignIn}/>
+    <Route path="/" component={App}>
+      <IndexRoute component={MainPage}/>
       <Route path="signin" component={SignIn} />
       <Route path="signup" component={SignUpApp} />
       <Route path="main" component={MainPage} />
