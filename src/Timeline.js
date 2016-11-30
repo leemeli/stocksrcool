@@ -4,7 +4,7 @@ export default class Timeline extends React.Component {
     render(){
         return(
             <div>
-            <ul class="timeline" id="timelineGraph">
+            <ul className="timeline" id="timelineGraph">
                 <li><a href="#1day">1d</a></li>
                 <li><a href="#1month">1m</a></li>
                 <li><a href="#3month">3m</a></li>

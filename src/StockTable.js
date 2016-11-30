@@ -3,7 +3,7 @@ import React from 'react';
 export default class StockTable extends React.Component {
     render(){
         return(
-            <table style="width:100%">
+            <table styleName="width:100%">
             <tr>
                 <th>Company</th>
                 <th>Close Price</th> 

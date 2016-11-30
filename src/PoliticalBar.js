@@ -4,7 +4,7 @@ export default class PoliticalBar extends React.Component {
     render(){
         return(
             <div>
-            <ul class="topNav" id="topNavbar">
+            <ul className="topNav" id="topNavbar">
                 <li><a href="#viewAll">View All</a></li>
                 <li><a href="#trumpPage">Trump Affiliated</a></li>
                 <li><a href="#clintonPage">Clinton Affiliated</a></li>

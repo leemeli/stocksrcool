@@ -6,7 +6,7 @@ export default class Nav extends React.Component {
          <header role="banner">
 
         {/*Sidebar*/}
-        <ul class="sidebar" id="leftSidebar">
+        <ul className="sidebar" id="leftSidebar">
                 <h3>Stocks R Us</h3>
                 {/*Insert user-specific information here
                 Welcome back, [Insert current users name]!
