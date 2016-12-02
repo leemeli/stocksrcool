@@ -36,8 +36,7 @@ export default class SignUpApp extends React.Component {
 		var userRef = firebase.database().ref('users/'+firebaseUser.uid); 
         var userData = {
           fullName:fullName,
-
-          stocks:[''],
+          stocks:[],
           cash: 5000
         }
         var userPromise = userRef.set(userData); //update entry in JOITC, return promise for chaining
