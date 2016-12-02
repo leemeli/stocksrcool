@@ -1,3 +1,65 @@
 .half-width {
     width: 50%;
 }
+
+body {
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    background-image: url("http://ei.marketwatch.com//Multimedia/2015/09/21/Photos/ZH/MW-DU756_Stock_20150921172954_ZH.jpg"); 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed
+}
+
+h1 {
+    margin-left: 25px;
+}
+
+.sign-in-form {
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    float: left;
+
+}
+
+#col1 {
+    float: left;
+    margin-right: 10px;
+}
+
+#col2 {
+    float: right;
+    padding-right: 20px;
+}
+
+#col3 {
+    float:right;
+    display: block;
+}
+
+.sign-up-form {
+    margin-top: 75px;
+    background-color:rgba(0,0,0,0.5);
+    padding: 20px 30px 10px 30px;
+}
+
+@media (min-width: 768px) {
+    .sign-up-form {
+    margin-left: 25vw;
+    margin-right: 25vw;
+    padding: 20px 30px 10px 30px;
+}
+}
+
+.sign-up-form h1 {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
