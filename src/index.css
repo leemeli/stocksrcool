@@ -1,3 +1,27 @@
 .half-width {
     width: 50%;
 }
+
+h1 {
+    margin-left: 25px;
+}
+
+.sign-in-form {
+    position: absolute;
+    top: 0;
+    right: 0;
+    float: left;
+}
+
+#col1 {
+    float: left;
+}
+
+#col2 {
+    float: right;
+}
+
+#col3 {
+    float:right;
+    display: block;
+}
