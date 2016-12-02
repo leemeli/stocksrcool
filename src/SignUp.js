@@ -99,10 +99,10 @@ export default class SignUpForm extends React.Component {
 
     return (
        <div className="container">
-        <header>
-          <h1>Sign Up!</h1>
-        </header>
+
       <form role="form" className="sign-up-form">
+      
+        <h1>Sign Up!</h1>
 
        <ValidatedInput field="fullName" type="text" label="Name" changeCallback={this.handleChange} errors={fullNameErrors} />
 
