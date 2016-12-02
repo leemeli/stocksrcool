@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'; //import our component
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
-import SignIn from './SignIn';
+import SignInApp from './SignInApp';
 import SignUpApp from './SignUpApp';
 import MainPage from './Main';
 import firebase from 'firebase';
@@ -28,7 +28,7 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={MainPage}/>
-      <Route path="signin" component={SignIn} />
+      <Route path="signin" component={SignInApp} />
       <Route path="signup" component={SignUpApp} />
       <Route path="main" component={MainPage} />
       <Route path="settings" component={Settings} />

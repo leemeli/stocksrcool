@@ -24,6 +24,9 @@ export default class MainPage extends React.Component {
         if(this.state.currentUser === null) {
             return (
                 <div>
+                <header role="banner">
+                    <h1>Stocks R Us</h1>
+                </header>
                 <main role="main">
                 <SignIn />
                 <SignUpApp />
