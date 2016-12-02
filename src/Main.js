@@ -5,6 +5,8 @@ import Timeline from './Timeline';
 import StockTable from './StockTable';
 import SignUpApp from './SignUpApp';
 import SignInApp from './SignInApp';
+import About from './About';
+import Footer from './Footer';
 import firebase from 'firebase';
 import {hashHistory} from 'react-router';
 
@@ -24,13 +26,13 @@ export default class MainPage extends React.Component {
         if(this.state.currentUser === null) {
             return (
                 <div>
-                <header role="banner">
+                <div id="front">
                     <h1>Stocks R Us</h1>
-                </header>
-                <main role="main">
                 <SignInApp />
                 <SignUpApp />
-                </main>
+                </div>
+                <About />
+                <Footer />
                 </div>
             );
          }
