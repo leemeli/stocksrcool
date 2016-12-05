@@ -108,3 +108,8 @@ canvas {
     background-repeat: no-repeat;
     background-attachment: fixed
 }
+
+
+.about {
+    font-size: 12pt;
+}
