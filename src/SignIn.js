@@ -91,10 +91,10 @@ export default class SignInForm extends React.Component {
             <button className="btn btn-primary" disabled={!signInEnabled} onClick={(e) => this.signIn(e)}>Login</button>
           </div>
           <div id="col2">
-            <ValidatedInput field="password" type="password" label="Password" changeCallback={this.handleChange} errors={passwordErrors} />
+            <ValidatedInput field="password" type="password" label="Password"  tabIndex={2} changeCallback={this.handleChange} errors={passwordErrors} />
           </div>
           <div id="col1">
-            <ValidatedInput field="email" type="email" label="Email" changeCallback={this.handleChange} errors={emailErrors} />
+            <ValidatedInput field="email" type="email" label="Email"  tabIndex={1} changeCallback={this.handleChange} errors={emailErrors} />
           </div>
         </form>
       </div>
@@ -111,7 +111,7 @@ class ValidatedInput extends React.Component {
     return (
       <div className={"form-group " + this.props.errors.style}>
         <label htmlFor={this.props.field} className="control-label">{this.props.label}</label>
-        <input id={this.props.field} type={this.props.type} name={this.props.field} className="form-control" onChange={this.props.changeCallback} />
+        <input id={this.props.field} type={this.props.type} tabIndex={this.props.tabIndex} name={this.props.field} className="form-control" onChange={this.props.changeCallback} />
         <ValidationErrors errors={this.props.errors} />
       </div>
     );
