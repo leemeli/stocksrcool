@@ -50,7 +50,7 @@ export default class MainPage extends React.Component {
                 <Nav updateParent={this.updateState} />
                 <main role="main">
                     <PoliticalBar />
-                    <Timeline />
+                    <Timeline stock="MSFT"/>
                     <StockTable />
                 </main>
             </div>
