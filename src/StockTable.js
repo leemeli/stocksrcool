@@ -1,7 +1,8 @@
 import React from 'react';
+import StockTableRow from './StockTableRow';
 
 export default class StockTable extends React.Component {
-    render(){
+    render() { 
         return(
             <table>
                 <tbody>
@@ -11,6 +12,9 @@ export default class StockTable extends React.Component {
                     <th>Net Change</th>
                 </tr>
                     {/* Populate table with stock information from API here*/}
+                    
+                    <StockTableRow name={this.props.name} stock={this.props.stock} />
+
                 </tbody>
              </table>
         );
