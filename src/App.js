@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from './Footer';
 
 //a "root" component
 class App extends React.Component {

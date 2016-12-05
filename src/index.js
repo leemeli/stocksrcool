@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'; //import our component
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
-import SignInApp from './SignInApp';
-import SignUpApp from './SignUpApp';
 import MainPage from './Main';
 import firebase from 'firebase';
 import Settings from './Settings';
+import LoginPage from './Login';
 //can load other CSS files (e.g,. Bootstrap) here
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -28,8 +27,9 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={MainPage}/>
-      <Route path="signin" component={SignInApp} />
-      <Route path="signup" component={SignUpApp} />
+      {/*<Route path="signin" component={SignInApp} />
+      <Route path="signup" component={SignUpApp} />*/}
+      <Route path="login" component={LoginPage} />
       <Route path="main" component={MainPage} />
       <Route path="settings" component={Settings} />
     </Route>
