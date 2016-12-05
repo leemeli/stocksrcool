@@ -131,6 +131,10 @@ canvas {
     margin: 50px;
 }
 
+.index {
+    font-size: 12pt;
+}
+
 #front {
     padding: 20px;
     color: #fff;
@@ -147,12 +151,22 @@ canvas {
 }
 
 .incorrectLogin {
-    position: absolute;
+    position: relative;
+    text-align: center;
     text-transform: uppercase;
-    top: 90px;
-    right: 200px;
+    top: 20px;
     color: red;
-    float: right;
+}
+
+@media (min-width: 768px) {
+    .incorrectLogin {
+        position: absolute;
+        text-transform: uppercase;
+        top: 90px;
+        right: 150px;
+        float: right;
+        text-align: left;
+    }
 }
 
 footer {
@@ -174,5 +188,4 @@ footer a {
 
 footer a:hover {
     color: beige;
-
 }

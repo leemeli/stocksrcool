@@ -112,7 +112,6 @@ class ValidatedInput extends React.Component {
       <div className={"form-group " + this.props.errors.style}>
         <label htmlFor={this.props.field} className="control-label">{this.props.label}</label>
         <input id={this.props.field} type={this.props.type} tabIndex={this.props.tabIndex} name={this.props.field} className="form-control" onChange={this.props.changeCallback} />
-        <ValidationErrors errors={this.props.errors} />
       </div>
     );
   }

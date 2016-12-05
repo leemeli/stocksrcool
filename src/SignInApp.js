@@ -52,7 +52,7 @@ componentWillUnmount() {
 
       return (<div id="signInDiv"><SignInForm signInCallback={this.signIn}/>
       {this.state.incorrectLogin &&
-          <p className="incorrectLogin">Incorrect login!</p>
+          <p className="incorrectLogin">Incorrect login, please try again.</p>
       }
       </div>);
   }
