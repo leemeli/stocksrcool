@@ -23,6 +23,11 @@ export default class SignInApp extends React.Component {
 signIn(email, password) {
     /* Sign in the user */
     firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(
+        function() {
+          hashHistory.push('/main');
+        }
+      )
       .catch((err) => console.log(err));
   }
 

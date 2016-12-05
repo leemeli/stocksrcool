@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
-import {hashHistory} from 'react-router';
+// import {hashHistory} from 'react-router';
 
 export default class Nav extends React.Component {
     constructor(props){
@@ -12,6 +12,7 @@ export default class Nav extends React.Component {
     //A callback function for logging out the current user
     signOut(){
         /* Sign out the user, and update the state */
+        console.log('Signing out');
         firebase.auth().signOut();
         this.updateParent({currentUser: null});
     }
