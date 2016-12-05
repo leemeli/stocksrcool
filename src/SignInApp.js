@@ -6,7 +6,8 @@ import {hashHistory} from 'react-router';
 export default class SignInApp extends React.Component {
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {incorrectLogin: false};
+    this.signIn = this.signIn.bind(this);
   }
   
   componentDidMount() {
@@ -28,7 +29,10 @@ signIn(email, password) {
           hashHistory.push('/main');
         }
       )
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        this.setState({incorrectLogin: true});
+      });
   }
 
   //A callback function for logging out the current user
@@ -46,6 +50,10 @@ componentWillUnmount() {
 
   render() {
 
-      return (<div id="signInDiv"><SignInForm signInCallback={this.signIn}/></div>);
+      return (<div id="signInDiv"><SignInForm signInCallback={this.signIn}/>
+      {this.state.incorrectLogin &&
+          <p className="incorrectLogin">Incorrect login, please try again.</p>
+      }
+      </div>);
   }
 }

@@ -30,7 +30,7 @@ export default class LoginPage extends React.Component {
         return (
             <div>
                 <div id="front">
-                    <h1>Stocks R Us</h1>
+                    <h1 className="title">Stocks R Us</h1>
                     <SignInApp />
                     <SignUpApp />
                 </div>

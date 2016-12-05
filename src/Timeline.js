@@ -1,12 +1,14 @@
 import React from 'react';
 import StockChart from './StockChart';
-
+import {Button} from 'react-bootstrap';
+import StockTable from './StockTable';
 
 export default class Timeline extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {stock:{}, company:""};
+        this.state = {stock:{}, company:"", span: 7};
         this.getData = this.getData.bind(this);
+        this.changeTimeSpan = this.changeTimeSpan.bind(this);
         this.getData();
     }
 
@@ -33,6 +35,11 @@ export default class Timeline extends React.Component {
                 console.log('Fetch Error :-S', err);
             });
     }
+
+    changeTimeSpan(x) {
+        this.setState({span: x});
+    }
+
     render() {
         
         console.log(Object.keys(this.state.stock).length);
@@ -44,13 +51,15 @@ export default class Timeline extends React.Component {
             <div>
                 <StockChart name={this.state.company} stock={this.state.stock}/>
                 <ul className="timeline" id="timelineGraph">
-                    <li><a href="#1day">1d</a></li>
+                    <li><Button onClick={this.changeTimeSpan}>1d</Button></li>
+                    <li><Button onClick={this.changeTimeSpan}>1w</Button></li>
                     <li><a href="#1month">1m</a></li>
                     <li><a href="#3month">3m</a></li>
                     <li><a href="#1year">1y</a></li>
                     <li><a href="#5year">5y</a></li>
                     <li><a href="#max">Max</a></li>
                 </ul>
+                <StockTable name={this.state.company} stock={this.state.stock}/>
             </div>
         );
     }
