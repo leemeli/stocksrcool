@@ -35,7 +35,6 @@ export default class MainPage extends React.Component {
                     if (user.email !== null) {
                         console.log("You're logged in as", user.email);
                     }
-                    // hashHistory.push('/login');
                 } else {
                     console.log('Not logged in, redirecting to login page');
                     hashHistory.push('/login');
