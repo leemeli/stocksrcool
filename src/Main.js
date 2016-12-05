@@ -51,7 +51,6 @@ export default class MainPage extends React.Component {
                 <main role="main">
                     <PoliticalBar />
                     <Timeline stock="MSFT"/>
-                    <StockTable />
                 </main>
             </div>
         );
