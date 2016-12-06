@@ -108,15 +108,15 @@ canvas {
 
 @media (min-width: 768px) {
     .sign-up-form {
-        margin-left: 20vw;
-        margin-right: 20vw;
+        margin-left: 20%;
+        margin-right: 20%;
 }
 }
 
 @media (min-width: 995px) {
     .sign-up-form {
-        margin-left: 25vw;
-        margin-right: 25vw;
+        margin-left: 25%;
+        margin-right: 25%;
 }
 }
 
@@ -205,8 +205,15 @@ footer a:hover {
 }
 
 #leftSidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     font-size: 20px;
     text-align: center;
+    background-color: #193366;
+    color: white;
+    z-index: 1;
 }
 
 #leftSidebar li {
@@ -223,19 +230,47 @@ footer a:hover {
     color: white;
 }
 
+#loggedInMain {
+    position: absolute;
+    top: 400px;
+    z-index: 0;
+ }
+
 @media (min-width: 768px) {
     #leftSidebar {
         position: fixed;
         top: 0;
         left: 0;
         width: 250px;
-        background-color: #193366;
-        color: white;
         height: 100%;
         padding: 0;
+        padding-top: 5vh;
     }
     #loggedInMain {
-        position: absolute;
-        left: 280px;
+        position: relative;
+        left: 300px;
+        top: 20px;
+        width: 70%;
+    }
+}
+
+@media (min-width: 1500px) {
+    body {
+        font-size: 1.4vw;
+    }
+    .sign-up-form h1 {
+        font-size: 3vw;
+    }
+    h1 {
+        font-size: 6vw;
+    }
+    h2 {
+        font-size: 2.5vw;
+    }
+    h3 {
+        font-size: 2vw;
+    }
+    footer {
+        font-size: 2vw;
     }
 }
