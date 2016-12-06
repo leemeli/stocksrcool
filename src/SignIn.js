@@ -116,25 +116,3 @@ class ValidatedInput extends React.Component {
     );
   }
 }
-
-//a component to represent and display validation errors
-class ValidationErrors extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.errors.required &&
-          <p className="help-block">Required!</p>
-        }
-        {this.props.errors.email &&
-          <p className="help-block">Not an email address!</p>
-        }
-        {this.props.errors.minLength &&
-          <p className="help-block">Must be at least {this.props.errors.minLength}characters.</p>
-        }
-        {this.props.errors.match &&
-          <p className="help-block">Password does not match!</p>
-        }
-      </div>
-    );
-  }
-}

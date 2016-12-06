@@ -1,7 +1,5 @@
 import React from "react";
-import Bootstrap from "react-bootstrap";
 import firebase from 'firebase';
-
 
 class StockTableRow extends React.Component {
     constructor(props) {
@@ -9,9 +7,10 @@ class StockTableRow extends React.Component {
         this.state = {
             buying: false,
             selling: false,
-            quantity: 0,
+            quantity: 1,
             count: 0,
-            lastStatus: false
+            errorMessage: false,
+            successMessage: false,
         };
         this.startBuy = this.startBuy.bind(this);
         this.buy = this.buy.bind(this);
@@ -46,7 +45,9 @@ class StockTableRow extends React.Component {
         this.setState({
             buying: false,
             selling: true,
-            quantity: 0,
+            quantity: 1,
+            errorMessage: false,
+            successMessage: false,
         });
         console.log(this.state);
     }
@@ -57,7 +58,9 @@ class StockTableRow extends React.Component {
         this.setState({
             buying: true,
             selling: false,
-            quantity: 0,
+            quantity: 1,
+            errorMessage: false,
+            successMessage: false,
         });
         console.log(this.state);
     }
@@ -74,8 +77,6 @@ class StockTableRow extends React.Component {
         console.log('Quantity: ' + quantity);
 
         var user = firebase.auth().currentUser;
-
-        
 
         if (quantity && quantity > 0) {
 
@@ -108,12 +109,16 @@ class StockTableRow extends React.Component {
                                 var stockPromise = userStockRef.set(newStockCount);
                                 var cashPromise = userCashRef.set(newMoneyValue);
 
+                                var message = 'Successfully sold ' + quantity + ' ' + stockCode + ' stock for $' + totalCost.toFixed(2) + '!';
+
                                 that.setState(
                                     {
                                         count: newStockCount,
                                         buying: false,
                                         selling: false,
-                                        quantity: 0
+                                        quantity: 1,
+                                        errorMessage: false,
+                                        successMessage: message
                                     }
                                 );
                                 console.log('New stock count: ' + newStockCount);
@@ -123,6 +128,11 @@ class StockTableRow extends React.Component {
                             });
                     } else {
                         console.log("You don't have that many stocks to sell!");
+                        that.setState(
+                            {
+                                errorMessage: "You don't have that many stocks!"
+                            }
+                        );
                     }
                 });
         }
@@ -143,7 +153,7 @@ class StockTableRow extends React.Component {
         var user = firebase.auth().currentUser;
 
         // Check the total price of stocks (stock price * quantity)
-        
+
 
         if (quantity && quantity > 0) {
             var totalCost = quantity * stockPrice;
@@ -173,12 +183,16 @@ class StockTableRow extends React.Component {
                                 var stockPromise = userStockRef.set(newStockCount);
                                 var cashPromise = userCashRef.set(newMoneyValue);
 
+                                var message = 'Successfully purchased ' + quantity + ' ' + stockCode + ' stock for $' + totalCost.toFixed(2) + '!';;
+
                                 that.setState(
                                     {
                                         count: newStockCount,
                                         buying: false,
                                         selling: false,
-                                        quantity: 0
+                                        quantity: 1,
+                                        errorMessage: false,
+                                        successMessage: message
                                     }
                                 );
                                 console.log('New stock count: ' + newStockCount);
@@ -188,6 +202,11 @@ class StockTableRow extends React.Component {
                             });
                     } else {
                         console.log('Inefficient funds! You have $' + cash + ', but the stocks you want to purchase cost $' + totalCost + '.');
+                        that.setState(
+                            {
+                                errorMessage: 'Not enough money!'
+                            }
+                        );
                     }
                 }
                 );
@@ -201,7 +220,9 @@ class StockTableRow extends React.Component {
         this.setState({
             buying: false,
             selling: false,
-            quantity: 1
+            quantity: 1,
+            errorMessage: false,
+            successMessage: false
         });
         console.log(this.state);
     }
@@ -210,14 +231,12 @@ class StockTableRow extends React.Component {
         e.preventDefault();
         this.setState(
             {
-                quantity: parseInt(e.target.value)
+                // 10 is radix value, good to specify for parseInt
+                // parseInt is to standardize values with leading zeroes
+                quantity: parseInt(e.target.value, 10)
             }
         );
     }
-
-
-
-
 
     render() {
         var name = this.props.name;
@@ -246,6 +265,7 @@ class StockTableRow extends React.Component {
                         (this.state.buying && !this.state.selling) &&
                         <div>
                             <h4>How many would you like to buy?</h4>
+                            <p>You currently have {this.state.count} {/* space */}of this stock.</p>
                             <div>
                                 <div>
                                     <label>Enter amount</label>
@@ -263,7 +283,7 @@ class StockTableRow extends React.Component {
                         (!this.state.buying && this.state.selling) &&
                         <div>
                             <h4>How many would you like to sell?</h4>
-                            <p>You currently have {this.state.count} of this stock.</p>
+                            <p>You currently have {this.state.count} {/* space */}of this stock.</p>
                             <div>
                                 <div>
                                     <label>Enter amount</label>
@@ -274,6 +294,18 @@ class StockTableRow extends React.Component {
                                     <button onClick={this.cancel}>Cancel</button>
                                 </div>
                             </div>
+                        </div>
+                    }
+                    {/* Error message display */
+                        this.state.errorMessage !== false &&
+                        <div className="text-danger">
+                            {this.state.errorMessage}
+                        </div>
+                    }
+                    {/* Success message display */
+                        this.state.successMessage !== false &&
+                        <div className="text-success">
+                            {this.state.successMessage}
                         </div>
                     }
                 </td>

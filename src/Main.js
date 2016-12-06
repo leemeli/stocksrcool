@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from './Nav';
 import PoliticalBar from './PoliticalBar';
 import Timeline from './Timeline';
-import StockTable from './StockTable';
+// import StockTable from './StockTable';
 // import SignUpApp from './SignUpApp';
 // import SignInApp from './SignInApp';
 // import About from './About';
