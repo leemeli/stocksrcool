@@ -34,6 +34,7 @@ export default class MainPage extends React.Component {
                 if (user) {
                     if (user.email !== null) {
                         console.log("You're logged in as", user.email);
+                        // Reevaluate user's net worth:
                     }
                 } else {
                     console.log('Not logged in, redirecting to login page');
@@ -47,9 +48,9 @@ export default class MainPage extends React.Component {
         return (
              <div>
                 <Nav updateParent={this.updateState} />
-                <main role="main">
+                <main role="main" id="loggedInMain">
                     <PoliticalBar />
-                    <Timeline stock="MSFT"/>
+                    <Timeline stock="AAPL"/>
                 </main>
             </div>
         );
