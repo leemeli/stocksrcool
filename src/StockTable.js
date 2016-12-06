@@ -9,9 +9,9 @@ export default class StockTable extends React.Component {
                 <tbody>
                 <tr>
                     <th>Company</th>
+                    <th>Affiliation</th>
                     <th>Close Price</th> 
                     <th>Net Change</th>
-                    <th>Affiliation</th>
                 </tr>
                     {/* Populate table with stock information from API here*/}
                     

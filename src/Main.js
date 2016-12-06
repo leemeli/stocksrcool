@@ -34,7 +34,30 @@ export default class MainPage extends React.Component {
                 if (user) {
                     if (user.email !== null) {
                         console.log("You're logged in as", user.email);
-                        // Reevaluate user's net worth:
+
+
+                        // Reevaluate user's net worth when the user is here:
+
+                        // var cash = null;
+                        // var totalStockValue = null;
+
+                        // var userCashRef = firebase.database().ref('users/' + user.uid + '/cash');
+                        // userCashRef.once('value')
+                        //     .then(function (snapshot) {
+                        //         cash = snapshot.val();
+
+                        //         var userStocksRef = firebase.database().ref('users/' + user.uid + '/stocks');
+                        //         userStocksRef.once('value')
+                        //             .then(function (snapshot2) {
+                        //                 var stocks = snapshot2.getChildren();
+                        //                 var total = stocks.reduce(
+                        //                     function (sum, stock) {
+                        //                         console.log(sum + (stock * 1));
+                        //                         return sum + (stock * 5);
+                        //                     }, cash
+                        //                 );
+                        //             });
+                        //     });
                     }
                 } else {
                     console.log('Not logged in, redirecting to login page');
@@ -46,11 +69,11 @@ export default class MainPage extends React.Component {
 
     render() {
         return (
-             <div>
+            <div>
                 <Nav updateParent={this.updateState} />
                 <main role="main" id="loggedInMain">
                     <PoliticalBar />
-                    <Timeline stock="AAPL"/>
+                    <Timeline stock="AAPL" />
                 </main>
             </div>
         );
