@@ -29,7 +29,8 @@ export default class SignUpApp extends React.Component {
         var profilePromise = firebaseUser.updateProfile({
           displayName: fullName,
           stocks: [],
-          cash: 5000
+          cash: 5000,
+          netWorth: 5000,
         }); //return promise for chaining
 
         //create new entry in the Cloud DB (for others to reference)
@@ -37,7 +38,8 @@ export default class SignUpApp extends React.Component {
         var userData = {
           fullName: fullName,
           stocks: [],
-          cash: 5000
+          cash: 5000,
+          netWorth: 5000
         }
         var userPromise = userRef.set(userData); //update entry in JOITC, return promise for chaining
         return Promise.all([profilePromise, userPromise]); //do both at once!

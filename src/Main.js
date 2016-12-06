@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from './Nav';
 import PoliticalBar from './PoliticalBar';
 import Timeline from './Timeline';
-import StockTable from './StockTable';
+// import StockTable from './StockTable';
 // import SignUpApp from './SignUpApp';
 // import SignInApp from './SignInApp';
 // import About from './About';
@@ -14,7 +14,7 @@ export default class MainPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            netWorth: false
         };
         // var user = firebase.auth().currentUser;
         // this.state = {
@@ -37,33 +37,55 @@ export default class MainPage extends React.Component {
 
 
                         // Reevaluate user's net worth when the user is here:
-
-                        var cash = null;
-                        var netWorth = null;
+                        var netWorth = 0;
 
                         var userCashRef = firebase.database().ref('users/' + user.uid + '/cash');
                         userCashRef.once('value')
                             .then(function (snapshot) {
 
                                 // Cash assets
-                                cash = snapshot.val();
+                                netWorth += snapshot.val();
+                                var netWorthRef = firebase.database().ref('users/' + user.uid + '/netWorth');
 
                                 // Stock assets (index 4 of the first array returned == losing price on the most recent day)
                                 var userStocksRef = firebase.database().ref('users/' + user.uid + '/stocks');
                                 userStocksRef.once('value')
                                     .then(function (snapshot2) {
-                                        var stocks = snapshot2.val();
-                                        console.log(stocks);
-                                        // var total = stocks.reduce(
-                                        //     function (sum, stock) {
-                                        //         console.log(sum + (stock * 1));
-                                        //         return sum + (stock * 5);
-                                        //     }, cash
-                                        // );
-                                        // stocks.forEach(
-                                        //     function(stock) {
-                                        //     netWorth += stocks
-                                        // );
+                                        snapshot2.forEach(function (stock) {
+                                            var company = stock.key;
+                                            var quantity = stock.val();
+                                            var stockPrice = 0;
+
+                                            console.log('Company: ' + company, 'Quantity: ' + quantity);
+
+                                            if (quantity > 0) {
+
+                                                fetch('https://www.quandl.com/api/v3/datasets/WIKI/' + company + '.json?api_key=_-huFRLBpt58XiqjyQyU')
+                                                    .then(
+                                                    function (response) {
+                                                        console.log('Response from ' + company);
+                                                        if (response.status !== 200) {
+                                                            console.log('Looks like there was a problem. Status Code: ' +
+                                                                response.status);
+                                                            return;
+                                                        }
+
+                                                        // Examine the text in the response  
+                                                        response.json().then(function (data) {
+                                                            stockPrice = data.dataset.data.slice(0, 1)[0][4];
+
+                                                            var totalValue = quantity * stockPrice;
+                                                            netWorth += totalValue;
+                                                            console.log('New net worth: ' + netWorth);
+                                                            var netWorthPromise = netWorthRef.set(netWorth);
+                                                            return Promise.all([netWorthPromise]);
+                                                        });
+                                                    })
+                                                    .catch(function (err) {
+                                                        console.log('Fetch Error :-S', err);
+                                                    });
+                                            }
+                                        });
                                     });
                             });
                     }
