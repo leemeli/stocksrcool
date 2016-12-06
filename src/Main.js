@@ -45,7 +45,7 @@ export default class MainPage extends React.Component {
 
                                 // Cash assets
                                 netWorth += snapshot.val();
-                                var netWorthRef = firebase.database().ref('users/' + user.uid + '/networth');
+                                var netWorthRef = firebase.database().ref('users/' + user.uid + '/netWorth');
 
                                 // Stock assets (index 4 of the first array returned == losing price on the most recent day)
                                 var userStocksRef = firebase.database().ref('users/' + user.uid + '/stocks');
