@@ -384,8 +384,8 @@ footer a:hover {
     font-size: 12pt;
 }
 .cash {
-    font-size: 14pt;
     font-weight: bold;
+    color: rgb(105, 224, 143);
 }
 strong {
     margin-right: 1em;
@@ -395,4 +395,8 @@ strong {
 }
 .republican {
     background-color: rgb(254, 194, 199);
+}
+.settings-option {
+    font-style: italic;
+    color: blue;
 }
