@@ -126,9 +126,14 @@ canvas {
 
 #aboutPage {
     background-color: white;
-    text-align: justify;
-    text-justify: inter-word;
     margin: 50px;
+}
+
+@media (min-width: 768px) {
+    #aboutPage {
+        width: 50%;
+        margin: 100px 25% 100px 25%;
+    }
 }
 
 .index {
@@ -136,7 +141,7 @@ canvas {
 }
 
 #front {
-    padding: 20px;
+    padding: 20px 20px 100px 20px;
     color: #fff;
     height: 100%;
     width: 100%;
@@ -172,14 +177,19 @@ canvas {
 footer {
     color: white; 
     background-color: #193366;
-    padding: 50px;
+    padding: 20px;
     text-align: center;
+    font-size: 15pt;
 }
 
 footer ul {
-    margin: none;
+    margin: 0;
     list-style-type: none;
     padding-left:0;
+}
+
+footer li {
+    margin: 10px;
 }
 
 footer a {
