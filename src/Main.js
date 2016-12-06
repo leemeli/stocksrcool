@@ -47,7 +47,7 @@ export default class MainPage extends React.Component {
         return (
              <div>
                 <Nav updateParent={this.updateState} />
-                <main role="main">
+                <main role="main" id="loggedInMain">
                     <PoliticalBar />
                     <Timeline stock="MSFT"/>
                 </main>

@@ -24,7 +24,7 @@ export default class Nav extends React.Component {
 
         {/*Sidebar*/}
         <ul className="sidebar" id="leftSidebar">
-                <h3>Stocks R Us</h3>
+                <h1 className="title">Stocks R Us</h1>
                 {/*Insert user-specific information here
                 Welcome back, [Insert current users name]!
                 Cash: [Insert cash amount] */}
@@ -32,10 +32,10 @@ export default class Nav extends React.Component {
                 <li><a href="#portfolio">My Portfolio</a></li>
                 <li><a href="#timeline">My Timeline</a></li>
                 <li><a href="#settings">Settings</a></li>
+                <li><div className="logout">
+                    <button className="btn btn-warning" onClick={()=>this.signOut()}>Sign out</button>
+                </div></li>
         </ul>
-        <div className="logout">
-              <button className="btn btn-warning" onClick={()=>this.signOut()}>Sign out</button>
-        </div>
     </header>
         );
     }

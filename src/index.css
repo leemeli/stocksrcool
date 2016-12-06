@@ -24,9 +24,7 @@ body {
 }
 
 h1 {
-    margin-left: 25px;
-    margin-top: 0px;
-    font-size: 60px;
+    font-size: 55px;
 }
 
 h1, h2 {
@@ -40,6 +38,11 @@ h3 {
 .title {
     font-family: 'Cookie', cursive;
     text-transform: none;
+}
+
+.frontTitle {
+    margin-left: 25px;
+    margin-top: 0;
 }
 
 hr {
@@ -183,12 +186,13 @@ footer {
 }
 
 footer ul {
-    margin: 0;
-    list-style-type: none;
     padding-left:0;
 }
 
 footer li {
+    margin: 0;
+    list-style-type: none;
+    padding-left:0;
     margin: 10px;
 }
 
@@ -197,5 +201,41 @@ footer a {
 }
 
 footer a:hover {
-    color: beige;
+    color: white;
+}
+
+#leftSidebar {
+    font-size: 20px;
+    text-align: center;
+}
+
+#leftSidebar li {
+    margin: 20px;
+    list-style-type: none;
+    padding-left:0;
+}
+
+#leftSidebar a {
+    color: white;
+}
+
+#leftSidebar a:hover {
+    color: white;
+}
+
+@media (min-width: 768px) {
+    #leftSidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        background-color: #193366;
+        color: white;
+        height: 100%;
+        padding: 0;
+    }
+    #loggedInMain {
+        position: absolute;
+        left: 280px;
+    }
 }
