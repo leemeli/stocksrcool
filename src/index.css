@@ -207,7 +207,15 @@ footer a:hover {
 /*When the window size changes, the graph gets exponentially large*/
 .stock-chart {
     color: white;
-    height: 750px;
+    /*height: 900px;*/
+}
+
+@media (max-width: 768px) {
+    #leftSidebar li {
+        display: inline-block;
+        padding-left: 0;
+        font-size: 14px;
+    }
 }
 
 #leftSidebar {
@@ -215,6 +223,7 @@ footer a:hover {
     top: 0;
     left: 0;
     width: 100%;
+    padding: 0;
     font-size: 20px;
     text-align: center;
     background-color: #193366;
@@ -238,8 +247,17 @@ footer a:hover {
 
 #loggedInMain {
     position: absolute;
-    top: 400px;
+    left: 0;
+    top: 250px;
     z-index: 0;
+    margin: 15px;
+    width: 90%;
+ }
+
+ @media (min-width: 510px) {
+     #loggedInMain {
+         top: 200px;
+     }
  }
 
 @media (min-width: 768px) {
@@ -256,7 +274,30 @@ footer a:hover {
         position: relative;
         left: 300px;
         top: 20px;
-        width: 70%;
+        width: 500px;
+    }
+}
+
+@media (min-width: 989px) {
+    #loggedInMain {
+        left: 400px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #loggedInMain {
+        left: 500px;
+    }
+}
+
+@media (min-width: 1500px) {
+    #leftSidebar {
+        width: 20%;
+        font-size: 1.5vw;
+    }
+    #loggedInMain {
+        left: 30%;
+        width: 40%;
     }
 }
 
@@ -299,4 +340,42 @@ footer a:hover {
 }
 .cancel-container > button {
     width: 25%;
+}
+#timelineGraph li{
+    list-style-type: none;
+    padding-left:0;
+    display: inline-block;
+}
+
+/*#firstRow {
+    text-transform: uppercase;
+}*/
+
+#settings {
+    position: absolute;
+    line-height: 30px;
+    left: 10%;
+    top: 400px;
+    width: 80%;
+}
+
+@media (min-width: 768px) {
+    #settings {
+        position: relative;
+        left: 300px;
+        top: 20px;
+        width: 500px;
+    }
+}
+
+@media (min-width: 989px) {
+    #settings {
+        left: 300px;
+        top: 20px;
+        width: 700px;
+    }
+}
+
+#deactivateBtn {
+    text-align: center;
 }

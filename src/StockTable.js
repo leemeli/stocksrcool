@@ -7,11 +7,12 @@ export default class StockTable extends React.Component {
             <div className="container">
             <table className="table table-bordered table-hover" aria-live="polite">
                 <tbody>
-                <tr>
+                <tr id="firstRow">
                     <th>Company</th>
                     <th>Affiliation</th>
                     <th>Close Price</th> 
                     <th>Net Change</th>
+                    <th>Buy and sell</th>
                 </tr>
                     {/* Populate table with stock information from API here*/}
                     
