@@ -4,7 +4,7 @@ import StockTableRow from './StockTableRow';
 export default class StockTable extends React.Component {
     render() { 
         return(
-            <table>
+            <table id="stockTable">
                 <tbody>
                 <tr>
                     <th>Company</th>

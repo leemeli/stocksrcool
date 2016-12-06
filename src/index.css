@@ -274,3 +274,14 @@ footer a:hover {
         font-size: 2vw;
     }
 }
+
+#timelineGraph li{
+    list-style-type: none;
+    padding-left:0;
+    display: inline-block;
+}
+
+#stockTable {
+    margin: 50px;
+    padding: 10px;
+}
