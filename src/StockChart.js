@@ -31,7 +31,7 @@ export default class StockChart extends React.Component {
         }
 
         return(
-            <div>
+            <div className="container stock-chart">
                 <h2>{this.props.name}</h2>
                 <Line data={data} width={70} height={50} options={{maintainAspectRatio: false}}/>
             </div>
