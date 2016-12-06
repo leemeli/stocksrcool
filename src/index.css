@@ -232,8 +232,11 @@ footer a:hover {
 
 #loggedInMain {
     position: absolute;
+    left: 0;
     top: 400px;
     z-index: 0;
+    margin: 15px;
+    width: 90%;
  }
 
 @media (min-width: 768px) {
@@ -250,7 +253,30 @@ footer a:hover {
         position: relative;
         left: 300px;
         top: 20px;
-        width: 70%;
+        width: 500px;
+    }
+}
+
+@media (min-width: 989px) {
+    #loggedInMain {
+        left: 400px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #loggedInMain {
+        left: 500px;
+    }
+}
+
+@media (min-width: 1500px) {
+    #leftSidebar {
+        width: 20%;
+        font-size: 1.5vw;
+    }
+    #loggedInMain {
+        left: 30%;
+        width: 40%;
     }
 }
 
@@ -281,7 +307,6 @@ footer a:hover {
     display: inline-block;
 }
 
-#stockTable {
-    margin: 50px;
-    padding: 10px;
+#firstRow {
+    text-transform: uppercase;
 }
