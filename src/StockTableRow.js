@@ -9,6 +9,7 @@ class StockTableRow extends React.Component {
             selling: false,
             quantity: 1,
             count: 0,
+            affiliation: '',
             errorMessage: false,
             successMessage: false,
         };
@@ -23,6 +24,8 @@ class StockTableRow extends React.Component {
 
     // When component is about to be mounted, check the user's stock count for this row
     componentDidMount() {
+        var that = this;
+
         var user = firebase.auth().currentUser;
         var userStockRef = firebase.database().ref('users/' + user.uid + '/stocks/' + this.props.stockCode);
         userStockRef.once('value')
@@ -31,12 +34,28 @@ class StockTableRow extends React.Component {
                 if (!stockCount) {
                     stockCount = 0;
                 }
-                this.setState(
+                that.setState(
                     {
                         count: stockCount
                     }
                 );
-            }.bind(this));
+            }
+        );
+
+        // Now check the company's political affiliation!
+        var politicalRef = firebase.database().ref('companies/' + (this.props.stockCode).toLowerCase());
+        politicalRef.once('value')
+            .then(function (snapshot) {
+                var affiliationVal = snapshot.val();
+                if (!affiliationVal) {
+                    affiliationVal = 'Unknown';
+                }
+                that.setState(
+                    {
+                        affiliation: affiliationVal
+                    }
+                );
+            });
     }
 
     // Start sale prompt
@@ -246,12 +265,35 @@ class StockTableRow extends React.Component {
         var closePrice = this.props.stock.slice(0, 1)[0][4];
         var netChange = Math.round((this.props.stock.slice(0, 1)[0][4] - this.props.stock.slice(0, 1)[0][1]) * 100) / 100;
 
+        // Style for positive or negative net change (red or green)
+        var netChangeStyle = '';
+
+        if (netChange < 0) {
+            netChangeStyle = 'text-danger';
+        } else if (netChange > 0) {
+            netChangeStyle = 'text-success';
+        }
+
+        // Political affiliation colors
+        var affiliation = this.state.affiliation;
+        var affiliationStyle = '';
+        switch(affiliation) {
+            case 'd':
+                affiliation = 'Democrat';
+                affiliationStyle = 'democrat';
+                break;
+            case 'r':
+                affiliation = 'Republican';
+                affiliationStyle = 'republican';
+                break;
+        }
+
         return (
             <tr>
                 <td>{shortName}</td>
-                <td>Democrat</td>
+                <td className={affiliationStyle}>{affiliation}</td>
                 <td>${closePrice}</td>
-                <td>{netChange}%</td>
+                <td className={netChangeStyle}>{netChange}%</td>
                 <td className="buy-sell-container">
                     {/* Default appearance */
                         (!this.state.buying && !this.state.selling) &&

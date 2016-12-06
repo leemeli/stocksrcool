@@ -50,14 +50,15 @@ export default class Timeline extends React.Component {
         return (
             <div>
                 <StockChart name={this.state.company} stock={this.state.stock}/>
-                <ul className="timeline" id="timelineGraph">
+                <ul className="timeline well" id="timelineGraph">
+                    <li><strong>View:</strong></li>
                     <li><Button onClick={this.changeTimeSpan}>1d</Button></li>
                     <li><Button onClick={this.changeTimeSpan}>1w</Button></li>
-                    <li><a href="#1month">1m</a></li>
-                    <li><a href="#3month">3m</a></li>
-                    <li><a href="#1year">1y</a></li>
-                    <li><a href="#5year">5y</a></li>
-                    <li><a href="#max">Max</a></li>
+                    <li><Button onClick={this.changeTimeSpan}>1m</Button></li>
+                    <li><Button onClick={this.changeTimeSpan}>3m</Button></li>
+                    <li><Button onClick={this.changeTimeSpan}>1y</Button></li>
+                    <li><Button onClick={this.changeTimeSpan}>5y</Button></li>
+                    <li><Button onClick={this.changeTimeSpan}>Max</Button></li>
                 </ul>
                 <StockTable name={this.state.company} stock={this.state.stock} stockCode={this.state.stockCode}/>
             </div>
