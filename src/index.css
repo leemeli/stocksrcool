@@ -201,7 +201,13 @@ footer a {
 }
 
 footer a:hover {
+    color: beige;
+}
+
+/*When the window size changes, the graph gets exponentially large*/
+.stock-chart {
     color: white;
+    /*height: 900px;*/
 }
 
 @media (max-width: 768px) {
@@ -297,34 +303,53 @@ footer a:hover {
 
 @media (min-width: 1500px) {
     body {
-        font-size: 1.4vw;
+        font-size: 1vw;
     }
     .sign-up-form h1 {
-        font-size: 3vw;
+        font-size: 2vw;
     }
     h1 {
-        font-size: 6vw;
+        font-size: 3vw;
     }
     h2 {
-        font-size: 2.5vw;
+        font-size: 1.5vw;
     }
     h3 {
-        font-size: 2vw;
+        font-size: 1vw;
     }
     footer {
-        font-size: 2vw;
+        font-size: 1vw;
     }
 }
 
+.stock-chart-title {
+    color: black;
+}
+.buy-sell {
+    width: 50%;
+}
+.buy-sell-container {
+    width: 25%;
+    font-size: 10pt;
+}
+.cancel-container {
+    margin-top: auto;
+}
+.well {
+    margin-bottom: 0.5em;
+}
+.cancel-container > button {
+    width: 25%;
+}
 #timelineGraph li{
     list-style-type: none;
     padding-left:0;
     display: inline-block;
 }
 
-#firstRow {
+/*#firstRow {
     text-transform: uppercase;
-}
+}*/
 
 #settings {
     position: absolute;

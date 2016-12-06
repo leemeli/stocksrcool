@@ -6,7 +6,7 @@ import StockTable from './StockTable';
 export default class Timeline extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {stock:{}, company:"", span: 7};
+        this.state = {stock:{}, company:"", stockCode: "", span: 7};
         this.getData = this.getData.bind(this);
         this.changeTimeSpan = this.changeTimeSpan.bind(this);
         this.getData();
@@ -27,7 +27,7 @@ export default class Timeline extends React.Component {
                 // Examine the text in the response  
                 response.json().then(function (data) {
                     console.log(data);
-                    currentStock.setState({stock: data.dataset.data, company: data.dataset.name});
+                    currentStock.setState({stock: data.dataset.data, company: data.dataset.name, stockCode: data.dataset.dataset_code});
                 });
             }
             )
@@ -59,7 +59,7 @@ export default class Timeline extends React.Component {
                     <li><a href="#5year">5y</a></li>
                     <li><a href="#max">Max</a></li>
                 </ul>
-                <StockTable name={this.state.company} stock={this.state.stock}/>
+                <StockTable name={this.state.company} stock={this.state.stock} stockCode={this.state.stockCode}/>
             </div>
         );
     }
