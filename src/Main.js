@@ -38,26 +38,34 @@ export default class MainPage extends React.Component {
 
                         // Reevaluate user's net worth when the user is here:
 
-                        // var cash = null;
-                        // var totalStockValue = null;
+                        var cash = null;
+                        var netWorth = null;
 
-                        // var userCashRef = firebase.database().ref('users/' + user.uid + '/cash');
-                        // userCashRef.once('value')
-                        //     .then(function (snapshot) {
-                        //         cash = snapshot.val();
+                        var userCashRef = firebase.database().ref('users/' + user.uid + '/cash');
+                        userCashRef.once('value')
+                            .then(function (snapshot) {
 
-                        //         var userStocksRef = firebase.database().ref('users/' + user.uid + '/stocks');
-                        //         userStocksRef.once('value')
-                        //             .then(function (snapshot2) {
-                        //                 var stocks = snapshot2.getChildren();
-                        //                 var total = stocks.reduce(
-                        //                     function (sum, stock) {
-                        //                         console.log(sum + (stock * 1));
-                        //                         return sum + (stock * 5);
-                        //                     }, cash
-                        //                 );
-                        //             });
-                        //     });
+                                // Cash assets
+                                cash = snapshot.val();
+
+                                // Stock assets (index 4 of the first array returned == losing price on the most recent day)
+                                var userStocksRef = firebase.database().ref('users/' + user.uid + '/stocks');
+                                userStocksRef.once('value')
+                                    .then(function (snapshot2) {
+                                        var stocks = snapshot2.val();
+                                        console.log(stocks);
+                                        // var total = stocks.reduce(
+                                        //     function (sum, stock) {
+                                        //         console.log(sum + (stock * 1));
+                                        //         return sum + (stock * 5);
+                                        //     }, cash
+                                        // );
+                                        // stocks.forEach(
+                                        //     function(stock) {
+                                        //     netWorth += stocks
+                                        // );
+                                    });
+                            });
                     }
                 } else {
                     console.log('Not logged in, redirecting to login page');
