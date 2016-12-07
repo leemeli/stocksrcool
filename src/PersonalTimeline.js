@@ -2,11 +2,11 @@ import React from 'react';
 import Nav from './Nav';
 import MultipleStockChart from './MultipleStockChart';
 import { Button } from 'react-bootstrap';
-import StockTable from './StockTable';
+// import StockTable from './StockTable';
+import PersonalStockTable from './PersonalStockTable';
 
 import firebase from 'firebase';
-import { hashHistory } from 'react-router';
-import { Link } from 'react-router';
+import { hashHistory, Link } from 'react-router';
 
 
 export default class PersonalTimeline extends React.Component {
@@ -18,6 +18,7 @@ export default class PersonalTimeline extends React.Component {
 
             allStockObjects: [],
             allStockCodes: [],
+            allStockNames: [],
             span: 7,
 
             cash: '',
@@ -58,6 +59,7 @@ export default class PersonalTimeline extends React.Component {
 
         var stockObjects = [];
         var stockCodes = [];
+        var stockNames = [];
 
         console.log('API shopping list initiated');
 
@@ -75,12 +77,14 @@ export default class PersonalTimeline extends React.Component {
 
                         stockObjects.push(data.dataset.data);
                         stockCodes.push(data.dataset.dataset_code);
+                        stockNames.push(data.dataset.name);
 
-                        if (stockObjects.length == codes.length) {
+                        if (stockObjects.length === codes.length) {
                             console.log('Final stock object!');
                             that.setState({
                                 allStockObjects: stockObjects,
                                 allStockCodes: stockCodes,
+                                allStockNames: stockNames,
                                 finished: true
                             });
                             console.log(that.state.allStockObjects);
@@ -120,7 +124,7 @@ export default class PersonalTimeline extends React.Component {
     }
 
     // If user is not authenticated, show login page
-    componentWillMount() {
+    componentDidMount() {
         var that = this;
 
 
@@ -164,7 +168,7 @@ export default class PersonalTimeline extends React.Component {
                                     currentChecks++;
                                     // console.log(currentChecks);
                                     // console.log(stockCompanyCount);
-                                    if (currentChecks == stockCompanyCount) {
+                                    if (currentChecks === stockCompanyCount) {
                                         that.setState({
                                             stockCodes: allStockCodes
                                         });
@@ -209,27 +213,27 @@ export default class PersonalTimeline extends React.Component {
 
         if (this.state.noStocks) {
             return (
-                <div id="personal-timeline" className="text-center">
+                <section role="region" id="personal-timeline" className="text-center">
                     <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                     <div className="text-center go-buy-stocks gentle-title center-block">No stocks to view! Get out there and buy some stocks!</div>
                     <Link to="/main">Enter the market</Link>
-                </div>
+                </section>
             );
         }
 
         // If loading data hasn't finished, show loading:
         else if (!this.state.finished) {
             return (
-                <div id="personal-timeline">
+                <section role="region" id="personal-timeline">
                     <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                     <h2 className="text-center go-buy-stocks gentle-title center-block">Loading... {this.state.lastLoaded} </h2>
-                </div>
+                </section>
             );
         }
 
         // if finished loading data:
         return (
-            <div>
+            <section role="region" id="personal-timeline-region">
                 <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                 <main role="main" id="personal-timeline">
                     <div>
@@ -243,11 +247,10 @@ export default class PersonalTimeline extends React.Component {
                             <li><Button onClick={this.spanYear}>1y</Button></li>
                             <li><Button onClick={this.spanFiveYears}>5y</Button></li>
                         </ul>
-                        {/* we need multicolumn tables before this will work */}
-                        {/*<StockTable name={this.state.allStockCodes} stock={this.state.allStockCodes} stockCode={this.state.allStockCodes}/>*/}
+                        <PersonalStockTable names={this.state.allStockNames} stocks={this.state.allStockObjects} stockCodes={this.state.allStockCodes} />
                     </div>
                 </main>
-            </div>
+            </section>
         );
     }
 }

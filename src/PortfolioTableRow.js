@@ -82,7 +82,7 @@ componentWillMount() {
         console.log('Hello', symbolCode);
 
         var closePrice = (this.props.stock.slice(0, 1)[0][4]).toFixed(2);
-        var totalValue = closePrice * this.props.quantity;
+        var totalValue = (closePrice * this.props.quantity).toFixed(2);
         var netChange = (closePrice - this.state.purchasePrice).toFixed(2);
         var totalNetChange = (netChange * this.props.quantity).toFixed(2);
         var percentChange = ((netChange/this.state.purchasePrice) * 100).toFixed(2);

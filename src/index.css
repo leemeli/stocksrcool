@@ -205,7 +205,7 @@ footer a:hover {
     color: beige;
 }
 
-/*When the window size changes, the graph gets exponentially large*/
+/*When the window size changes, the graph gets exponentially large, this limits that! */
 .stock-chart {
     color: white;
     width: 500px;
@@ -218,6 +218,11 @@ footer a:hover {
         padding-left: 0;
         font-size: 14px;
     }
+    /*.welcome-back {
+         visibility: hidden;
+         width: 0;
+         height: 0;
+     }*/
 }
 
 #leftSidebar {
@@ -247,7 +252,7 @@ footer a:hover {
     color: white;
 }
 
-#loggedInMain, #personal-timeline {
+#loggedInMain, #personal-timeline, #portfolio {
     position: absolute;
     left: 0;
     z-index: 0;
@@ -263,7 +268,7 @@ footer a:hover {
 }
 
  @media (min-width: 510px) {
-     #loggedInMain, #personal-timeline {
+     #loggedInMain, #personal-timeline, #portfolio {
          top: 250px;
      }
  }
@@ -278,18 +283,21 @@ footer a:hover {
         padding: 0;
         padding-top: 5vh;
     }
-    #loggedInMain, #personal-timeline {
+    #loggedInMain, #personal-timeline, #portfolio {
         position: relative;
         left: 300px;
         top: 20px;
         width: 400px;
+    }
+    #portfolio {
+        left: 200px;
     }
     .stock-chart, .stock-table {
         width: 400px;
     }
 }
 @media (min-width: 850px) {
-    #loggedInMain, #personal-timeline {
+    #loggedInMain, #personal-timeline, #portfolio {
         width: 500px;
     }
     .stock-chart, .stock-table {
@@ -297,7 +305,7 @@ footer a:hover {
     }
 }
 @media (min-width: 986px) {
-     #loggedInMain, #personal-timeline {
+     #loggedInMain, #personal-timeline, #portfolio {
          width: 586px;
      }
      .stock-chart, .stock-table {
@@ -306,7 +314,7 @@ footer a:hover {
 }
 
 @media (min-width: 1200px) {
-     #loggedInMain, #personal-timeline {
+     #loggedInMain {
          width: 786px;
      }
      .stock-chart, .stock-table {
@@ -319,9 +327,12 @@ footer a:hover {
         width: 20%;
         font-size: 1.5vw;
     }
-    #loggedInMain, #personal-timeline {
+    #loggedInMain, #personal-timeline, #portfolio {
         left: 23%;
-         width: 1086px;
+        width: 1086px;
+     }
+     #portfolio {
+         left: 15%;
      }
      .stock-chart, .stock-table {
         width: 886px;
@@ -329,11 +340,11 @@ footer a:hover {
 }
 
 @media (min-width: 2000px) {
-     #loggedInMain, #personal-timeline {
+     #loggedInMain, #personal-timeline, #portfolio {
          width: 1286px;
      }
      .stock-chart, .stock-table {
-        width: 986px;
+        width: 1086px;
     }
 }
 
@@ -445,9 +456,9 @@ strong {
     text-align: center;
     font-size: 14pt;
 }
-.text-danger {
+/*.text-danger {
     text-align: center;
-}
+}*/
 .purchase-info {
     color: blue;
 }

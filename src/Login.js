@@ -5,19 +5,13 @@ import About from './About';
 import Footer from './Footer';
 import firebase from 'firebase';
 
+// The page for logging in and signing up!
 export default class LoginPage extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     // this.state = {
-            
-    //     // };
-    // }
-
     updateState(stateChange) {
         this.setState(stateChange);
     }
 
-    // If user is logged in, log them out
+    // If user is logged in, log them out if they go to this page
     componentWillMount() {
         var user = firebase.auth().currentUser;
         if (user) {
@@ -30,9 +24,13 @@ export default class LoginPage extends React.Component {
         return (
             <div>
                 <div id="front">
-                    <h1 className="title frontTitle">Stocks R Us</h1>
-                    <SignInApp />
-                    <SignUpApp />
+                    <header role="banner">
+                        <h1 className="title frontTitle">Stocks R Us</h1>
+                    </header>
+                    <main role="main">
+                        <SignInApp />
+                        <SignUpApp />
+                    </main>
                 </div>
                 <About />
                 <Footer />

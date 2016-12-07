@@ -25,13 +25,11 @@ var config = {
 };
 firebase.initializeApp(config);
 
-//render the Application view
+//render the Application view with routes!
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={MainPage} />
-      {/*<Route path="signin" component={SignInApp} />
-      <Route path="signup" component={SignUpApp} />*/}
       <Route path="login" component={LoginPage} />
       <Route path="main" component={MainPage} />
       <Route path="settings" component={Settings} />

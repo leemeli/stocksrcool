@@ -48,11 +48,9 @@ export default class Timeline extends React.Component {
     }
     spanWeek() {
         this.setState({span: 7});
-        console.log("WOOOO")
     }
     spanMonth() {
         this.setState({span: 30});
-        console.log("WOOOO")
     }
     spanThreeMonths() {
         this.setState({span: 90});
@@ -66,13 +64,13 @@ export default class Timeline extends React.Component {
 
     render() {
         
-        console.log(Object.keys(this.state.stock).length);
+        // console.log(Object.keys(this.state.stock).length);
         if (Object.keys(this.state.stock).length < 1) {
             return(<p>Loading...</p>)
         }
 
         return (
-            <div>
+            <section role="region" id="timeline-region">
                 <StockChart name={this.state.company} span={this.state.span} stock={this.state.stock}/>
                 <ul className="timeline well" id="timelineGraph">
                     <li><strong>View:</strong></li>
@@ -84,7 +82,7 @@ export default class Timeline extends React.Component {
                     <li><Button onClick={this.spanFiveYears}>5y</Button></li>
                 </ul>
                 <StockTable name={this.state.company} stock={this.state.stock} stockCode={this.state.stockCode}/>
-            </div>
+            </section>
         );
     }
 }

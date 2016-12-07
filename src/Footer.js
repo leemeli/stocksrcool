@@ -4,17 +4,10 @@ class Footer extends React.Component {
     render() {
         return (
             <footer role="contentinfo">
-                (c) Stocks R Us
-                <ul id="contact">
-                    <li><a href="#">About</a>
-                    </li>
-                    <li><a href="#">Contact</a>
-                    </li>
-                </ul>
+                <abbr title="Copyright">©</abbr>  Stocks R Us
             </footer>
         );
     }
-
 }
 
 export default Footer;

@@ -4,7 +4,7 @@ export default class PoliticalBar extends React.Component {
 
     render(){
         return(
-            <div>
+            <section role="region" id="politicalBar">
                 <ul className="nav nav-tabs">
                 <li role="presentation" className="active"><a href="#">View All</a></li>
                 <li role="presentation"><a href="#">Democrat</a></li>
@@ -16,7 +16,7 @@ export default class PoliticalBar extends React.Component {
                 </div>
                 <button type="submit" className="btn btn-default">Submit</button>
                 </form>
-            </div>
+            </section>
         );
     }
 }

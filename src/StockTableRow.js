@@ -292,6 +292,10 @@ class StockTableRow extends React.Component {
                 affiliation = 'Republican';
                 affiliationStyle = 'republican';
                 break;
+            default:
+                affiliation = 'Unknown';
+                affiliationStyle = '';
+                break;
         }
 
         // Total cost of buying/selling stocks
@@ -299,6 +303,7 @@ class StockTableRow extends React.Component {
 
         return (
             <tr>
+                <td>{this.props.stockCode}</td>
                 <td>{shortName}</td>
                 <td className={affiliationStyle}>{affiliation}</td>
                 <td>${closePrice}</td>
@@ -308,7 +313,7 @@ class StockTableRow extends React.Component {
                         (!this.state.buying && !this.state.selling) &&
                         <div>
                             <button className="btn btn-primary buy-sell" onClick={this.startBuy}>Buy</button>
-                            <button className="btn btn-default buy-sell" disabled={this.state.count < 1} onClick={this.startSell}>Sell ({this.state.count})</button>
+                            <button className="btn btn-default buy-sell" disabled={this.state.count < 1} onClick={this.startSell}>Sell</button>
                         </div>
                     }
 
@@ -364,6 +369,7 @@ class StockTableRow extends React.Component {
                         </div>
                     }
                 </td>
+                {/*<td>{this.state.count}</td>*/}
             </tr>
         )
     }

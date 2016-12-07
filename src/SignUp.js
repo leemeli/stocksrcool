@@ -102,7 +102,7 @@ export default class SignUpForm extends React.Component {
     var signUpEnabled = (emailErrors.isValid && passwordErrors.isValid && passwordMatch.isValid && fullNameErrors.isValid);
 
     return (
-      <div className="container">
+      <section role="region" className="container" id="sign-up-form-region">
 
         <form role="form" className="sign-up-form">
 
@@ -121,7 +121,7 @@ export default class SignUpForm extends React.Component {
             <button className="btn btn-primary" disabled={!signUpEnabled} onClick={(e) => this.signUp(e)}>Sign-up</button>
           </div>
         </form>
-      </div>
+      </section>
     );
   }
 }
