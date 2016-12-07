@@ -15,10 +15,11 @@ export default class Timeline extends React.Component {
         this.spanYear = this.spanYear.bind(this);
         this.spanFiveYears = this.spanFiveYears.bind(this);
         this.spanMonth = this.spanMonth.bind(this);
-        
+        console.log(this.props.stock);
         this.getData();
     }
 
+    
 
     getData() {
         var currentStock = this;
@@ -48,11 +49,9 @@ export default class Timeline extends React.Component {
     }
     spanWeek() {
         this.setState({span: 7});
-        console.log("WOOOO")
     }
     spanMonth() {
         this.setState({span: 30});
-        console.log("WOOOO")
     }
     spanThreeMonths() {
         this.setState({span: 90});

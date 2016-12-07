@@ -18,26 +18,27 @@ export default class MainPage extends React.Component {
             netWorth: false,
             cash: '',
             name: '',
-            currentStock: 'AFG'
+            currentStock: 'MSFT'
         };
         // var user = firebase.auth().currentUser;
         // this.state = {
         //     currentUser: user
         // };
         this.updateState = this.updateState.bind(this);
+        this.handleStockChange = this.handleStockChange.bind(this);
     }
 
     updateState(stateChange) {
         this.setState(stateChange);
     }
 
-    handleChange(event) {
+    handleStockChange(event) {
         var field = event.target.name;
         var value = event.target.value;
-
-        var changes = {}; //object to hold changes
-        changes[field] = value; //change this field
-        this.setState(changes); //update state
+        this.setState({currentStock: value});
+        this.forceUpdate();
+        console.log(this.state.currentStock);
+        
     }
 
     // If user is not authenticated, show login page
@@ -123,8 +124,6 @@ export default class MainPage extends React.Component {
                                             });
                                     });
                             });
-
-
                     }
                 } else {
                     console.log('Not logged in, redirecting to login page');
@@ -135,12 +134,17 @@ export default class MainPage extends React.Component {
     }
 
     render() {
+        console.log(this.state.currentStock);
+        var timeline = <Timeline stock={this.state.currentStock} />;
+        
+        console.log(timeline);
+        
         return (
             <div>
                 <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                 <main role="main" id="loggedInMain">
-                    <PoliticalBar onChangeFunc={this.handleChange} />
-                    <Timeline stock={this.state.currentStock} />
+                    <PoliticalBar onChangeFunc={this.handleStockChange} />
+                    {timeline}
                 </main>
             </div>
         );
