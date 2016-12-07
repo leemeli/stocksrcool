@@ -4,8 +4,9 @@ import { Line } from 'react-chartjs-2';
 
 export default class StockChart extends React.Component {
     
-    render() {    
+    render() {
         var currentStocks = this.props.stock.slice(0, this.props.span);
+
         var dates = currentStocks.map(function(x) {
             return x[0];
         });
@@ -18,6 +19,7 @@ export default class StockChart extends React.Component {
         dates = dates.reverse();
         highPrice = highPrice.reverse();
         lowPrice = lowPrice.reverse();
+        
         var data = {
             labels: dates,
             datasets: [{

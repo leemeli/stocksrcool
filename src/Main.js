@@ -71,8 +71,6 @@ export default class MainPage extends React.Component {
                                         var cashVal = snapshot.val();
                                         netWorth += cashVal;
 
-
-
                                         that.setState(
                                             {
                                                 cash: (cashVal).toFixed(2),
@@ -123,8 +121,6 @@ export default class MainPage extends React.Component {
                                             });
                                     });
                             });
-
-
                     }
                 } else {
                     console.log('Not logged in, redirecting to login page');
