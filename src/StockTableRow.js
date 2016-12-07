@@ -217,7 +217,13 @@ class StockTableRow extends React.Component {
                                 console.log('New stock count: ' + newStockCount);
                                 console.log('New cash: ' + newMoneyValue);
 
-                                return Promise.all([stockPromise, cashPromise]); //do both at once!
+                                // Set the last purchased price for the stock:
+                                var userStockPriceRef = firebase.database().ref('users/' + user.uid + '/stockPrices/' + stockCode);
+                                var pricePromise = userStockPriceRef.set(stockPrice);
+
+
+
+                                return Promise.all([stockPromise, cashPromise, pricePromise]); //do both at once!
                             });
                     } else {
                         console.log('Inefficient funds! You have $' + cash + ', but the stocks you want to purchase cost $' + totalCost + '.');
@@ -288,6 +294,9 @@ class StockTableRow extends React.Component {
                 break;
         }
 
+        // Total cost of buying/selling stocks
+        var totalCost = (closePrice * this.state.quantity).toFixed(2);
+
         return (
             <tr>
                 <td>{shortName}</td>
@@ -308,6 +317,9 @@ class StockTableRow extends React.Component {
                         <div>
                             <h4>How many would you like to buy?</h4>
                             <p>You currently have {this.state.count} {/* space */}of this stock.</p>
+                            {totalCost > 0.00 &&
+                                <p className="purchase-info">Buying {this.state.quantity} of this stock will cost you about ${totalCost}!</p>
+                            }
                             <div>
                                 <div>
                                     <label>Enter amount</label>
@@ -326,6 +338,7 @@ class StockTableRow extends React.Component {
                         <div>
                             <h4>How many would you like to sell?</h4>
                             <p>You currently have {this.state.count} {/* space */}of this stock.</p>
+                            <p className="purchase-info">You can sell {this.state.quantity} of this stock for ${totalCost}!</p>
                             <div>
                                 <div>
                                     <label>Enter amount</label>

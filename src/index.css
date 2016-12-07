@@ -218,6 +218,11 @@ footer a:hover {
         padding-left: 0;
         font-size: 14px;
     }
+    .welcome-back {
+         visibility: hidden;
+         width: 0;
+         height: 0;
+     }
 }
 
 #leftSidebar {
@@ -289,7 +294,14 @@ footer a:hover {
     .stock-chart, .stock-table {
         width: 400px;
     }
-
+}
+@media (min-width: 850px) {
+    #loggedInMain, #personal-timeline {
+        width: 500px;
+    }
+    .stock-chart, .stock-table {
+        width: 500px;
+    }
 }
 @media (min-width: 986px) {
      #loggedInMain, #personal-timeline {
@@ -319,7 +331,7 @@ footer a:hover {
          width: 1086px;
      }
      .stock-chart, .stock-table {
-        width: 1086px;
+        width: 886px;
     }
 }
 
@@ -328,7 +340,7 @@ footer a:hover {
          width: 1286px;
      }
      .stock-chart, .stock-table {
-        width: 1286px;
+        width: 986px;
     }
 }
 
@@ -442,4 +454,22 @@ strong {
 }
 .text-danger {
     text-align: center;
+}
+.purchase-info {
+    color: blue;
+}
+.settings-option {
+    cursor: pointer;
+}
+.bankruptcy-button {
+    font-weight: bold;
+    color: red;
+    cursor: pointer;
+}
+.cancel-bankruptcy-button {
+    cursor: pointer;
+    margin-top: 1em;
+    color: black;
+    font-size: 24pt;
+    padding: 0.5em;
 }

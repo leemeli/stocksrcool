@@ -19,7 +19,10 @@ export default class StockChart extends React.Component {
         dates = dates.reverse();
         highPrice = highPrice.reverse();
         lowPrice = lowPrice.reverse();
-        
+
+        var name = this.props.name;
+        var shortName = name.substr(0, name.indexOf('('));
+
         var data = {
             labels: dates,
             datasets: [{
@@ -37,7 +40,7 @@ export default class StockChart extends React.Component {
 
         return(
             <div className="container stock-chart">
-                <h2 className="stock-chart-title">{this.props.name}</h2>
+                <h2 className="stock-chart-title gentle-title">{shortName}</h2>
                 <Line data={data} width={70} height={50} options={{maintainAspectRatio: true}}/>
             </div>
         )

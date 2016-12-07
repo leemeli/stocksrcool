@@ -144,7 +144,6 @@ class Settings extends React.Component {
         );
     }
 
-    //field="fullName" 
     render() {
         return (
             <div>
@@ -152,7 +151,7 @@ class Settings extends React.Component {
                 <div id="settings">
                     <h3 className="text-center">Settings</h3>
                     <ul className="well list-unstyled center-block">
-                        <li><span className="bold">Name</span>: {this.state.name}<a className="settings-option" onClick={this.nameChangeClick}>(change name)</a></li>
+                        <li><strong>Name:</strong> {this.state.name}<a className="settings-option" onClick={this.nameChangeClick}>(change name)</a></li>
                          {this.state.changeName &&
                             <li><div className="text-danger">
                                <input type="text" id="nameBox"/>
@@ -162,12 +161,17 @@ class Settings extends React.Component {
                                }
                             </div></li>
                         }
-                         <li><span className="bold">Your Cash</span>: {this.state.cash}</li>
+                         <li><strong>Your Cash:</strong> ${this.state.cash}</li>
                         <li id="deactivateBtn"><button type="button" className="btn btn-danger" onClick={this.bankruptcyWarning}>File for bankruptcy</button></li>
                     {this.state.warning &&
-                        <li><div className="text-danger">
-                            Are you sure? Filing for bankruptcy will reset your account. You will lose all of your current stocks.<br/>
-                            <a onClick={this.bankruptcy}>Yes, reset my account!</a>
+                        <li><div className="text-danger well">
+                            Filing for bankruptcy will dump all your assets! You will lose all of your current stocks and be left with just $5000 in cash. Are you sure you want to do this?<br/>
+                            <div>
+                                <button className="bankruptcy-button" onClick={this.bankruptcy}>Yes, I'm sure, reset my account!</button>
+                            </div>
+                            <div>
+                                <button className="cancel-bankruptcy-button" onClick={this.bankruptcyWarning}>Cancel</button>
+                            </div>
                         </div></li>
                     }
                     </ul>
