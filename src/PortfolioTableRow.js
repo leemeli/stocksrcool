@@ -20,11 +20,11 @@ class PortfolioTableRow extends React.Component {
 
         var user = firebase.auth().currentUser;
         var userStockRef = firebase.database().ref('users/' + user.uid + '/stocks/' + this.props.stockCode);
-        console.log(this.props.stockCode);
+        //console.log(this.props.stockCode);
         userStockRef.once('value')
             .then(function (snapshot) {
                 var stockCount = snapshot.val();
-                console.log(stockCount);
+                //console.log(stockCount);
                 if (!stockCount) {
                     stockCount = 0;
                 }
@@ -46,7 +46,7 @@ componentWillMount() {
                         var userStockPriceRef = firebase.database().ref('users/' + user.uid + '/stockPrices/' + this.props.stockCode);
                             userStockPriceRef.once('value').then(function (snapshot) {
                                     var price = snapshot.val();
-                                    console.log('price: ', price);
+                                    //console.log('price: ', price);
                                     if (!price) {
                                         price = 0;
                                     }
@@ -79,7 +79,7 @@ componentWillMount() {
 
         var shortName = name.substr(0, name.indexOf('('));
         var symbolCode = this.props.stockCode;
-        console.log('Hello', symbolCode);
+        //console.log('Hello', symbolCode);
 
         var closePrice = (this.props.stock.slice(0, 1)[0][4]).toFixed(2);
         var totalValue = (closePrice * this.props.quantity).toFixed(2);

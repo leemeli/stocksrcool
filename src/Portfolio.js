@@ -41,7 +41,6 @@ export default class Portfolio extends React.Component {
                     if (user.email !== null) {
                         console.log("You're logged in as", user.email);
 
-
                         // Reevaluate user's net worth when the user is here:
                         var netWorth = 0;
 
