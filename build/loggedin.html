@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Andrew Vuong, Melody Lee, Dillon Byron, Michael Lew">
+    <title>Stocks R Us</title>
+</head>
+
+<body>
+    <header role="banner">
+
+        <!-- Sidebar -->
+        <ul className="sidebar" id="leftSidebar">
+                <h3>Stocks R Us</h3>
+                <!-- Insert user-specific information here
+                Welcome back, [Insert current users name]!
+                Cash: [Insert cash amount] -->
+                <li><a href="#home">Home</a></li>
+                <li><a href="#portfolio">My Portfolio</a></li>
+                <li><a href="#timeline">My Timeline</a></li>
+                <li><a href="#settings">Settings</a></li>
+        </ul>
+        <button type="button">Logout</button>
+    </header>
+
+    <!-- Top Navigation Bar -->
+    <main role="main">
+        <ul className="topNav" id="topNavbar">
+                <li><a href="#viewAll">View All</a></li>
+                <li><a href="#trumpPage">Trump Affiliated</a></li>
+                <li><a href="#clintonPage">Clinton Affiliated</a></li>
+        </ul>
+            <input type="text" name="search" placeholder="Search here">
+
+    <!-- Timeline Graph -->
+        <ul className="timeline" id="timelineGraph">
+                <li><a href="#1day">1d</a></li>
+                <li><a href="#1month">1m</a></li>
+                <li><a href="#3month">3m</a></li>
+                <li><a href="#1year">1y</a></li>
+                <li><a href="#5year">5y</a></li>
+                <li><a href="#max">Max</a></li>
+                <!-- Insert Stock Timeline Graph from API here -->
+                <table style="width:100%">
+        </ul>
+        <table style="width:100%">
+            <tr>
+                <th>Company</th>
+                <th>Close Price</th> 
+                <th>Net Change</th>
+            </tr>
+                <!-- Populate table with stock information from API here -->
+        </table>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <ul id="contact">
+            <li><a href="#">About</a>
+            </li>
+            <li><a href="#">Contact</a>
+            </li>
+            <li><a href="#">Link</a>
+            </li>
+        </ul>
+    </footer>
+
+</body>
+
+</html>
