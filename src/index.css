@@ -429,3 +429,6 @@ strong {
     color: blue;
     padding-left: 40px;
 }
+.text-danger {
+    text-align: center;
+}
