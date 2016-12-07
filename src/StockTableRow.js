@@ -317,7 +317,7 @@ class StockTableRow extends React.Component {
 
         return (
             <tr className={hiddenStyle}>
-                <td>{this.props.stockCode}</td>
+                {/*<td>{this.props.stockCode}</td>*/}
                 <td>{shortName}</td>
                 <td className={affiliationStyle}>{affiliation}</td>
                 <td>${closePrice}</td>

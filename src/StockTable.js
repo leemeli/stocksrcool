@@ -10,7 +10,7 @@ export default class StockTable extends React.Component {
                 <table className="table table-bordered table-hover stock-table" aria-live="polite">
                     <tbody>
                     <tr id="firstRow">
-                        <th>Code</th>
+                        {/*<th>Code</th>*/}
                         <th>Company</th>
                         <th>Affiliation</th>
                         <th>Close Price</th> 

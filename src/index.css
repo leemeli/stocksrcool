@@ -264,7 +264,7 @@ footer a:hover {
     width: 90%;
 }
 .stock-table {
-    width: 80%;
+    width: 100%;
 }
 
  @media (min-width: 510px) {
