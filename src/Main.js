@@ -16,13 +16,12 @@ export default class MainPage extends React.Component {
             name: '',
             currentStock: 'MSFT', 
             val: '',
-            faction: 'np',
-            additionalStocks: true
+            faction: 'np'
         };
         this.updateState = this.updateState.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
-
+        this.updateCash = this.updateCash.bind(this);
         this.democrat = this.democrat.bind(this);
         this.republican = this.republican.bind(this);
         this.viewAll = this.viewAll.bind(this);
@@ -33,7 +32,7 @@ export default class MainPage extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({currentStock: event.target.value, additionalStocks: false});
+        this.setState({currentStock: event.target.value});
     }
 
     handleClick() {
@@ -109,6 +108,9 @@ export default class MainPage extends React.Component {
             faction: 'np'
         });
     }
+    updateCash(event){
+        this.setState({cash: event})
+    }
 
     render() {
         return (
@@ -118,7 +120,7 @@ export default class MainPage extends React.Component {
                 </header>
                 <main role="main" id="loggedInMain">
                     <PoliticalBar change={this.handleChange} oc1={this.democrat} oc2={this.republican} oc3={this.viewAll}/>
-                    <Timeline stock={this.state.currentStock} additionalStocks={this.state.additionalStocks} faction={this.state.faction}/>
+                    <Timeline stock={this.state.currentStock} updateCash={this.updateCash} additionalStocks={true} faction={this.state.faction}/>
                     
                 </main>
             </div>

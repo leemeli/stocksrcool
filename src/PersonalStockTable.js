@@ -3,16 +3,20 @@ import StockTableRow from './StockTableRow';
 
 export default class StockTable extends React.Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         var names = this.props.names;
         var stocks = this.props.stocks;
         var stockCodes = this.props.stockCodes;
-
+        var that = this;
         var rowArray = [];
 
         stocks.forEach(
             function(stock, i) {
-                rowArray.push(<StockTableRow name={names[i]} stock={stocks[i]} stockCode={stockCodes[i]} key={i} />);
+                rowArray.push(<StockTableRow name={names[i]}  updateCash={that.props.updateCash} stock={stocks[i]} stockCode={stockCodes[i]} key={i} />);
             }
         );
         return (

@@ -19,10 +19,10 @@ export default class StockTable extends React.Component {
                 </tr>
                     {/* Populate table with stock information from API here*/}
                     
-                    <StockTableRow name={this.props.name} stock={this.props.stock} stockCode={this.props.stockCode}/>
+                    <StockTableRow name={this.props.name} updateCash={this.props.updateCash} stock={this.props.stock} stockCode={this.props.stockCode}/>
 
                     </tbody>
-                    {this.props.additionalStocks === "true" &&
+                    {this.props.additionalStocks === true &&
                         <AdditionalStocks faction={this.props.faction}/>
                     }
                 </table>
