@@ -6,6 +6,8 @@ import StockTable from './StockTable';
 
 import firebase from 'firebase';
 import { hashHistory } from 'react-router';
+import { Link } from 'react-router';
+
 
 export default class PersonalTimeline extends React.Component {
     constructor(props) {
@@ -21,30 +23,37 @@ export default class PersonalTimeline extends React.Component {
             cash: '',
             name: '',
 
-            finished: false
+            finished: false,
+            lastLoaded: false,
+            noStocks: false
         };
-        
+
 
         this.apiShoppingList = this.apiShoppingList.bind(this);
         this.updateState = this.updateState.bind(this);
 
-        
+
     }
 
     // Requests a bunch of stock codes to get data for
     // Stock codes list should not include stocks where the user has 0 of the stock
-    apiShoppingList(codes) {
+    apiShoppingList(codes, hasStocks) {
         var that = this;
-        that.setState({
-            allStockObjects: [],
-            allStockCodes: []
-        });
+
+        if (!hasStocks) {
+            console.log('No stocks!');
+            return that.setState({
+                finished: true,
+                noStocks: true
+            });
+        }
+
         var stockObjects = [];
         var stockCodes = [];
 
         console.log('API shopping list initiated');
 
-        codes.forEach(function (stockCode, i) {
+        codes.forEach(function (stockCode) {
             fetch('https://www.quandl.com/api/v3/datasets/WIKI/' + stockCode + '.json?api_key=_-huFRLBpt58XiqjyQyU')
                 .then(
                 function (response) {
@@ -55,7 +64,7 @@ export default class PersonalTimeline extends React.Component {
 
                     // Examine the text in the response  
                     response.json().then(function (data) {
-                        
+
                         stockObjects.push(data.dataset.data);
                         stockCodes.push(data.dataset.dataset_code);
 
@@ -86,7 +95,7 @@ export default class PersonalTimeline extends React.Component {
     // If user is not authenticated, show login page
     componentWillMount() {
         var that = this;
-        
+
 
         var allStockCodes = [];
 
@@ -96,23 +105,44 @@ export default class PersonalTimeline extends React.Component {
                     if (user.email !== null) {
                         console.log("You're logged in as", user.email);
 
-                        var stocksRef = firebase.database().ref('users/' + user.uid + '/stocks');
+                        var stocksRef = firebase.database().ref('users/' + user.uid + '/stocks/');
                         stocksRef.once('value')
-                            .then(function(snapshot) {
-                                var stockCompanyCount = Object.keys(snapshot).length;
-                                console.log('SCC', stockCompanyCount);
-                                snapshot.forEach(function(stock) {
+                            .then(function (snapshot) {
+                                var stockCompanyCount = 0;
+                                // console.log(snapshot.val());
+
+                                if (!snapshot.val()) {
+                                    return that.apiShoppingList(that.state.stockCodes, false);
+                                } else {
+                                    stockCompanyCount = Object.keys(snapshot.val()).length;
+                                }
+
+                                var hasStocks = false;
+                                var currentChecks = 0;
+
+                                // console.log('SCC', stockCompanyCount);
+                                snapshot.forEach(function (stock) {
                                     var stockCode = stock.key;
                                     var validQuantity = stock.val() > 0;
+
                                     if (stockCode && validQuantity) {
                                         allStockCodes.push(stockCode);
-                                        console.log('Pushed ', stockCode);
-                                        if (allStockCodes.length == stockCompanyCount) {
-                                            that.setState({
-                                                stockCodes: allStockCodes
-                                            });
-                                            that.apiShoppingList(that.state.stockCodes);
-                                        }
+                                        console.log('Pushed', stockCode);
+                                        that.setState({
+                                            lastLoaded: (' ' + stockCode + ' done!')
+                                        });
+
+                                        hasStocks = true;
+                                    }
+                                    currentChecks++;
+                                    // console.log(currentChecks);
+                                    // console.log(stockCompanyCount);
+                                    if (currentChecks == stockCompanyCount) {
+                                        that.setState({
+                                            stockCodes: allStockCodes
+                                        });
+                                        // console.log(hasStocks);
+                                        that.apiShoppingList(that.state.stockCodes, hasStocks);
                                     }
                                 });
                             });
@@ -153,16 +183,24 @@ export default class PersonalTimeline extends React.Component {
         this.setState({ span: x });
     }
 
-
-
     render() {
 
-        // If loading data hasn't finished, show loading:
-        if (!this.state.finished) {
+        if (this.state.noStocks) {
             return (
-                <div>
+                <div id="personal-timeline" className="text-center">
                     <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
-                    <h2 className="text-center">Loading...</h2>
+                    <div className="text-center go-buy-stocks gentle-title center-block">No stocks to view! Get out there and buy some stocks!</div>
+                    <Link to="/main">Enter the market</Link>
+                </div>
+            );
+        }
+
+        // If loading data hasn't finished, show loading:
+        else if (!this.state.finished) {
+            return (
+                <div id="personal-timeline">
+                    <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
+                    <h2 className="text-center go-buy-stocks gentle-title center-block">Loading... {this.state.lastLoaded} </h2>
                 </div>
             );
         }
@@ -172,20 +210,20 @@ export default class PersonalTimeline extends React.Component {
             <div>
                 <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                 <main role="main" id="personal-timeline">
-                    <MultipleStockChart name="My Timeline (closing prices)" stocks={this.state.allStockObjects} stockCodes={this.state.allStockCodes}/>
-                    <ul className="timeline well" id="timelineGraph">
-                        <li><strong>View:</strong></li>
-                        <li><Button onClick={this.changeTimeSpan}>1d</Button></li>
-                        <li><Button onClick={this.changeTimeSpan}>1w</Button></li>
-                        <li><Button onClick={this.changeTimeSpan}>1m</Button></li>
-                        <li><Button onClick={this.changeTimeSpan}>3m</Button></li>
-                        <li><Button onClick={this.changeTimeSpan}>1y</Button></li>
-                        <li><Button onClick={this.changeTimeSpan}>5y</Button></li>
-                        <li><Button onClick={this.changeTimeSpan}>Max</Button></li>
-                    </ul>
-                    <div className="stocklist">
-                        {/* we need multicolumn tables before this will work */}
-                        {/*<StockTable name={this.state.allStockCodes} stock={this.state.allStockCodes} stockCode={this.state.allStockCodes}/>*/}
+                    <div>
+                        <MultipleStockChart name="My Timeline (closing prices)" stocks={this.state.allStockObjects} stockCodes={this.state.allStockCodes} />
+                        <ul className="timeline well" id="timelineGraph">
+                            <li><strong>View:</strong></li>
+                            <li><Button onClick={this.changeTimeSpan}>1d</Button></li>
+                            <li><Button onClick={this.changeTimeSpan}>1w</Button></li>
+                            <li><Button onClick={this.changeTimeSpan}>1m</Button></li>
+                            <li><Button onClick={this.changeTimeSpan}>3m</Button></li>
+                            <li><Button onClick={this.changeTimeSpan}>1y</Button></li>
+                            <li><Button onClick={this.changeTimeSpan}>5y</Button></li>
+                            <li><Button onClick={this.changeTimeSpan}>Max</Button></li>
+                        </ul>
+                            {/* we need multicolumn tables before this will work */}
+                            {/*<StockTable name={this.state.allStockCodes} stock={this.state.allStockCodes} stockCode={this.state.allStockCodes}/>*/}
                     </div>
                 </main>
             </div>

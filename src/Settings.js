@@ -144,6 +144,7 @@ class Settings extends React.Component {
         );
     }
 
+    //field="fullName" 
     render() {
         return (
             <div>
@@ -154,7 +155,7 @@ class Settings extends React.Component {
                         <li><span className="bold">Name</span>: {this.state.name}<a className="settings-option" onClick={this.nameChangeClick}>(change name)</a></li>
                          {this.state.changeName &&
                             <li><div className="text-danger">
-                               <input field="fullName" type="text" id="nameBox"/>
+                               <input type="text" id="nameBox"/>
                                <button type="button" className="btn" onClick={this.confirmNameChange}>Change Name</button>
                                {this.state.invalidName &&
                                    <div className="text-danger">Your name must be at least 3 characters long!</div>
