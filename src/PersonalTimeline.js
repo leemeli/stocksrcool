@@ -32,7 +32,7 @@ export default class PersonalTimeline extends React.Component {
 
         this.apiShoppingList = this.apiShoppingList.bind(this);
         this.updateState = this.updateState.bind(this);
-
+        this.updateCash = this.updateCash.bind(this);
         this.spanDay = this.spanDay.bind(this);
         this.spanWeek = this.spanWeek.bind(this);
         this.spanMonth = this.spanMonth.bind(this);
@@ -160,7 +160,7 @@ export default class PersonalTimeline extends React.Component {
                                         allStockCodes.push(stockCode);
                                         //console.log('Pushed', stockCode);
                                         that.setState({
-                                            lastLoaded: (' ' + stockCode + ' done!')
+                                            lastLoaded: (' ' + stockCode)
                                         });
 
                                         hasStocks = true;
@@ -209,6 +209,10 @@ export default class PersonalTimeline extends React.Component {
         );
     }
 
+    updateCash(event){
+        this.setState({cash: event})
+    }
+
     render() {
 
         if (this.state.noStocks) {
@@ -247,7 +251,7 @@ export default class PersonalTimeline extends React.Component {
                             <li><Button onClick={this.spanYear}>1y</Button></li>
                             <li><Button onClick={this.spanFiveYears}>5y</Button></li>
                         </ul>
-                        <PersonalStockTable names={this.state.allStockNames} stocks={this.state.allStockObjects} stockCodes={this.state.allStockCodes} />
+                        <PersonalStockTable names={this.state.allStockNames} updateCash={this.updateCash} stocks={this.state.allStockObjects} stockCodes={this.state.allStockCodes} />
                     </div>
                 </main>
             </section>

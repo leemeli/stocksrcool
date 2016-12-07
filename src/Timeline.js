@@ -79,7 +79,7 @@ export default class Timeline extends React.Component {
                     <li><Button onClick={this.spanYear}>1y</Button></li>
                     <li><Button onClick={this.spanFiveYears}>5y</Button></li>
                 </ul>
-                <StockTable name={this.state.company} stock={this.state.stock} stockCode={this.state.stockCode} additionalStocks={this.props.additionalStocks} faction={this.props.faction}/>
+                <StockTable name={this.state.company} updateCash={this.props.updateCash} stock={this.state.stock} stockCode={this.state.stockCode} additionalStocks={this.props.additionalStocks} faction={this.props.faction}/>
             </section>
         );
     }

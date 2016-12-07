@@ -148,7 +148,7 @@ class Settings extends React.Component {
         return (
             <div>
                 <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
-                <section role="region" id="settings">
+                <div id="settings">
                     <h3 className="text-center">Settings</h3>
                     <ul className="well list-unstyled center-block">
                         <li><strong>Name:</strong> {this.state.name}<a className="settings-option" onClick={this.nameChangeClick}>(change name)</a></li>
@@ -175,7 +175,7 @@ class Settings extends React.Component {
                         </div></li>
                     }
                     </ul>
-                </section>
+                </div>
             </div>
         );
     }

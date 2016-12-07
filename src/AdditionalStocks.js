@@ -27,7 +27,7 @@ export default class StockTable extends React.Component {
                     // Check if user has no preference, or if they have a matching preference
                     if (faction === 'np' || companyFaction === faction) {
 
-                        if (companyArray.length < 20) {
+                        if (companyArray.length < 2) {
                             companyArray.push(company);
 
                             fetch('https://www.quandl.com/api/v3/datasets/WIKI/' + company + '.json?api_key=_-huFRLBpt58XiqjyQyU')
@@ -62,6 +62,16 @@ export default class StockTable extends React.Component {
         return (
             <tbody className="extra-rows">
                 {this.state.rows}
+                {this.state.rows.length < 2 &&
+                    <tr id="loadingTable">
+                        <th>Loading...</th>
+                        <th>--</th>
+                        <th>--</th>
+                        <th>--</th>
+                        <th>--</th>
+                        <th>--</th>
+                    </tr>
+                }
             </tbody>
         )
     }

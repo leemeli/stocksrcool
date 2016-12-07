@@ -144,6 +144,7 @@ class StockTableRow extends React.Component {
                                 console.log('New cash: ' + newMoneyValue);
 
                                 return Promise.all([stockPromise, cashPromise]); //do both at once!
+                                
                             });
                     } else {
                         console.log("You don't have that many stocks to sell!");
@@ -197,6 +198,7 @@ class StockTableRow extends React.Component {
                                 var previousStocks = snapshot2.val();
                                 newStockCount = previousStocks + quantity;
                                 newMoneyValue = cash - totalCost;
+                                that.props.updateCash(cash - totalCost);
                             })
                             .then(function () {
                                 var stockPromise = userStockRef.set(newStockCount);
@@ -314,11 +316,13 @@ class StockTableRow extends React.Component {
 
         // Total cost of buying/selling stocks
         var totalCost = (closePrice * this.state.quantity).toFixed(2);
+        var stockCode = this.props.stockCode;
 
         return (
             <tr className={hiddenStyle}>
                 {/*<td>{this.props.stockCode}</td>*/}
                 <td>{shortName}</td>
+                <td>{stockCode}</td>
                 <td className={affiliationStyle}>{affiliation}</td>
                 <td>${closePrice}</td>
                 <td className={netChangeStyle}>{netChange}%</td>
