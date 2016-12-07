@@ -7,7 +7,6 @@ export default class Timeline extends React.Component {
     constructor(props) {
         super(props);
         this.state = {stock:{}, company:"", stockCode: "", span: 7};
-        this.getData = this.getData.bind(this);
         this.spanDay = this.spanDay.bind(this);
         this.spanWeek = this.spanWeek.bind(this);
         this.spanMonth = this.spanMonth.bind(this);
@@ -16,12 +15,12 @@ export default class Timeline extends React.Component {
         this.spanFiveYears = this.spanFiveYears.bind(this);
         this.spanMonth = this.spanMonth.bind(this);
         console.log(this.props.stock);
-        this.getData();
+        this.componentWillReceiveProps();
     }
 
     
 
-    getData() {
+    componentWillReceiveProps() {
         var currentStock = this;
         fetch('https://www.quandl.com/api/v3/datasets/WIKI/'+this.props.stock+'.json?api_key=_-huFRLBpt58XiqjyQyU')
             .then(
@@ -65,7 +64,7 @@ export default class Timeline extends React.Component {
 
     render() {
         
-        console.log(Object.keys(this.state.stock).length);
+        
         if (Object.keys(this.state.stock).length < 1) {
             return(<p>Loading...</p>)
         }

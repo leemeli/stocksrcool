@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from './Nav';
 import PoliticalBar from './PoliticalBar';
 import Timeline from './Timeline';
+import AdditionalStocks from './AdditionalStocks';
 // import StockTable from './StockTable';
 // import SignUpApp from './SignUpApp';
 // import SignInApp from './SignInApp';
@@ -18,27 +19,28 @@ export default class MainPage extends React.Component {
             netWorth: false,
             cash: '',
             name: '',
-            currentStock: 'MSFT'
+            currentStock: 'MSFT', 
+            val: ''
         };
         // var user = firebase.auth().currentUser;
         // this.state = {
         //     currentUser: user
         // };
         this.updateState = this.updateState.bind(this);
-        this.handleStockChange = this.handleStockChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     updateState(stateChange) {
         this.setState(stateChange);
     }
 
-    handleStockChange(event) {
-        var field = event.target.name;
-        var value = event.target.value;
-        this.setState({currentStock: value});
-        this.forceUpdate();
-        console.log(this.state.currentStock);
-        
+    handleChange(event) {
+        this.setState({currentStock: event.target.value});
+    }
+
+    handleClick() {
+        this.setState({currentStock: this.state.val});
     }
 
     // If user is not authenticated, show login page
@@ -134,17 +136,13 @@ export default class MainPage extends React.Component {
     }
 
     render() {
-        console.log(this.state.currentStock);
-        var timeline = <Timeline stock={this.state.currentStock} />;
-        
-        console.log(timeline);
-        
         return (
             <div>
                 <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                 <main role="main" id="loggedInMain">
-                    <PoliticalBar onChangeFunc={this.handleStockChange} />
-                    {timeline}
+                    <PoliticalBar click={this.handleClick} change={this.handleChange} />
+                    <Timeline stock={this.state.currentStock} />;
+                    <AdditionalStocks />
                 </main>
             </div>
         );

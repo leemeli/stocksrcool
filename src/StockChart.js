@@ -33,9 +33,11 @@ export default class StockChart extends React.Component {
             }]
         }
 
+        var shortName = this.props.name.substr(0, this.props.name.indexOf('P'));
+
         return(
             <div className="container stock-chart">
-                <h2 className="stock-chart-title">{this.props.name}</h2>
+                <h2 className="stock-chart-title">{shortName}</h2>
                 <Line data={data} width={70} height={50} options={{maintainAspectRatio: true}}/>
             </div>
         )
