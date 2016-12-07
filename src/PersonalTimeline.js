@@ -2,7 +2,8 @@ import React from 'react';
 import Nav from './Nav';
 import MultipleStockChart from './MultipleStockChart';
 import { Button } from 'react-bootstrap';
-import StockTable from './StockTable';
+// import StockTable from './StockTable';
+import PersonalStockTable from './PersonalStockTable';
 
 import firebase from 'firebase';
 import { hashHistory } from 'react-router';
@@ -18,6 +19,7 @@ export default class PersonalTimeline extends React.Component {
 
             allStockObjects: [],
             allStockCodes: [],
+            allStockNames: [],
             span: 7,
 
             cash: '',
@@ -58,6 +60,7 @@ export default class PersonalTimeline extends React.Component {
 
         var stockObjects = [];
         var stockCodes = [];
+        var stockNames = [];
 
         console.log('API shopping list initiated');
 
@@ -75,12 +78,14 @@ export default class PersonalTimeline extends React.Component {
 
                         stockObjects.push(data.dataset.data);
                         stockCodes.push(data.dataset.dataset_code);
+                        stockNames.push(data.dataset.name);
 
                         if (stockObjects.length == codes.length) {
                             console.log('Final stock object!');
                             that.setState({
                                 allStockObjects: stockObjects,
                                 allStockCodes: stockCodes,
+                                allStockNames: stockNames,
                                 finished: true
                             });
                             console.log(that.state.allStockObjects);
@@ -243,8 +248,7 @@ export default class PersonalTimeline extends React.Component {
                             <li><Button onClick={this.spanYear}>1y</Button></li>
                             <li><Button onClick={this.spanFiveYears}>5y</Button></li>
                         </ul>
-                        {/* we need multicolumn tables before this will work */}
-                        {/*<StockTable name={this.state.allStockCodes} stock={this.state.allStockCodes} stockCode={this.state.allStockCodes}/>*/}
+                        <PersonalStockTable names={this.state.allStockNames} stocks={this.state.allStockObjects} stockCodes={this.state.allStockCodes} />
                     </div>
                 </main>
             </section>

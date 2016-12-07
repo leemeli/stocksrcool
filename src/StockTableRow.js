@@ -365,6 +365,7 @@ class StockTableRow extends React.Component {
                         </div>
                     }
                 </td>
+                <td>{this.state.count}</td>
             </tr>
         )
     }
