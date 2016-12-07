@@ -161,29 +161,29 @@ export default class Portfolio extends React.Component {
 
         return (
             <div>
-                <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
-                <div className="container" id="personal-timeline">
-                    <h1 className="title">My Portfolio</h1>
-                    <table className="table table-bordered table-hover stock-table" aria-live="polite">
-                        <tbody>
-                            <tr id="firstRow">
-                                <th>Company</th>
-                                <th>Symbol</th>
-                                <th>QTY</th>
-                                <th>Purchase Price</th>
-                                <th>Current Value</th>
-                                <th>Total Value</th>
-                                <th>Net Change</th>
-                                <th>Total Net Change</th>
-                                <th>% Change</th>
-                            </tr>
-                            {/* Populate table with stock information from API here*/}
-
-                            {myItems}
-                        </tbody>
-                    </table>
-                    <h3>Stock Net Worth:  ${stockWorth}</h3>
-                </div>
+            <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
+            <div className="container" id="personal-timeline">
+            <h1 className="title">My Portfolio</h1>
+            <table className="table table-bordered table-hover stock-table" aria-live="polite">
+                <tbody>
+                <tr id="firstRow">
+                    <th>Company</th>
+                    <th>Symbol</th>
+                    <th>QTY</th>
+                    <th>Purchase Price</th> 
+                    <th>Current Value</th>
+                    <th>Total Current Value</th>
+                    <th>G/L (Per Stock)</th>
+                    <th>Total G/L</th>
+                    <th>% Change</th>
+                </tr>
+                    {/* Populate table with stock information from API here*/}
+                    
+                    {myItems}
+                </tbody>
+             </table>
+             <h3>Stock Net Worth:  ${stockWorth}</h3>
+             </div>
             </div>
         );
     }

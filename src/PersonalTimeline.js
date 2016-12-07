@@ -160,7 +160,7 @@ export default class PersonalTimeline extends React.Component {
                                         allStockCodes.push(stockCode);
                                         //console.log('Pushed', stockCode);
                                         that.setState({
-                                            lastLoaded: (' ' + stockCode + ' done!')
+                                            lastLoaded: (' ' + stockCode)
                                         });
 
                                         hasStocks = true;

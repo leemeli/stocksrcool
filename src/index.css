@@ -331,6 +331,10 @@ footer a:hover {
         left: 23%;
         width: 1086px;
      }
+     #settings {
+         position: absolute;
+         left: 40%;
+     }
      #portfolio {
          left: 15%;
      }
@@ -404,7 +408,7 @@ footer a:hover {
 #settings {
     position: absolute;
     line-height: 30px;
-    left: 10%;
+    left: 250px;
     top: 300px;
     width: 80%;
 }
