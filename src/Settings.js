@@ -10,6 +10,7 @@ class Settings extends React.Component {
         this.state = {
             warning: false,
             changeName: false,
+            invalidName: false,
             cash: '',
             name: ''
         };
@@ -64,14 +65,24 @@ class Settings extends React.Component {
         var user = firebase.auth().currentUser;
         var userNameRef = firebase.database().ref('users/' + user.uid + '/fullName');
         var nameValue = document.getElementById("nameBox").value;
-        userNameRef.set(nameValue);
-        this.forceUpdate();
-        this.setState(
-            {
-                changeName: false,
-                name: nameValue
-            }
-        );
+        if (nameValue.length > 2){
+            userNameRef.set(nameValue);
+            this.forceUpdate();
+            this.setState(
+                {
+                    changeName: false,
+                    name: nameValue,
+                    invalidName: false
+                }
+            );
+        }
+        else {
+            this.setState(
+                {
+                    invalidName: true
+                }
+            )
+        }
     }
 
     nameChangeClick(){
@@ -145,6 +156,9 @@ class Settings extends React.Component {
                             <li><div className="text-danger">
                                <input field="fullName" type="text" id="nameBox"/>
                                <button type="button" className="btn" onClick={this.confirmNameChange}>Change Name</button>
+                               {this.state.invalidName &&
+                                   <div className="text-danger">Your name must be at least 3 characters long!</div>
+                               }
                             </div></li>
                         }
                          <li><span className="bold">Your Cash</span>: {this.state.cash}</li>
