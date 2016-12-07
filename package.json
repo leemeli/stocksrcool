@@ -1,7 +1,7 @@
 {
   "name": "data-browser",
   "author": "Melody Lee, Michael Lew, Andrew Vuong, Dillon Byron",
-  "homepage": "https://info343-au16.github.io/challenges-leemeli/stocksrus/build",
+  "homepage": "https://github.com/leemeli/stocksrcool/build",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
