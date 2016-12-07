@@ -32,6 +32,14 @@ export default class PersonalTimeline extends React.Component {
         this.apiShoppingList = this.apiShoppingList.bind(this);
         this.updateState = this.updateState.bind(this);
 
+        this.spanDay = this.spanDay.bind(this);
+        this.spanWeek = this.spanWeek.bind(this);
+        this.spanMonth = this.spanMonth.bind(this);
+        this.spanThreeMonths = this.spanThreeMonths.bind(this);
+        this.spanYear = this.spanYear.bind(this);
+        this.spanFiveYears = this.spanFiveYears.bind(this);
+        this.spanMonth = this.spanMonth.bind(this);
+
 
     }
 
@@ -86,6 +94,25 @@ export default class PersonalTimeline extends React.Component {
                     console.log('Fetch Error :-S', err);
                 });
         });
+    }
+
+    spanDay() {
+        this.setState({ span: 2 });
+    }
+    spanWeek() {
+        this.setState({ span: 7 });
+    }
+    spanMonth() {
+        this.setState({ span: 30 });
+    }
+    spanThreeMonths() {
+        this.setState({ span: 90 });
+    }
+    spanYear() {
+        this.setState({ span: 365 });
+    }
+    spanFiveYears() {
+        this.setState({ span: 1825 });
     }
 
     updateState(stateChange) {
@@ -178,11 +205,6 @@ export default class PersonalTimeline extends React.Component {
         );
     }
 
-    // Change time span to X
-    changeTimeSpan(x) {
-        this.setState({ span: x });
-    }
-
     render() {
 
         if (this.state.noStocks) {
@@ -211,19 +233,18 @@ export default class PersonalTimeline extends React.Component {
                 <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                 <main role="main" id="personal-timeline">
                     <div>
-                        <MultipleStockChart name="My Timeline (closing prices)" stocks={this.state.allStockObjects} stockCodes={this.state.allStockCodes} />
+                        <MultipleStockChart name="My Timeline (closing prices)" span={this.state.span} stocks={this.state.allStockObjects} stockCodes={this.state.allStockCodes} />
                         <ul className="timeline well" id="timelineGraph">
                             <li><strong>View:</strong></li>
-                            <li><Button onClick={this.changeTimeSpan}>1d</Button></li>
-                            <li><Button onClick={this.changeTimeSpan}>1w</Button></li>
-                            <li><Button onClick={this.changeTimeSpan}>1m</Button></li>
-                            <li><Button onClick={this.changeTimeSpan}>3m</Button></li>
-                            <li><Button onClick={this.changeTimeSpan}>1y</Button></li>
-                            <li><Button onClick={this.changeTimeSpan}>5y</Button></li>
-                            <li><Button onClick={this.changeTimeSpan}>Max</Button></li>
+                            <li><Button onClick={this.spanDay}>1d</Button></li>
+                            <li><Button onClick={this.spanWeek}>1w</Button></li>
+                            <li><Button onClick={this.spanMonth}>1m</Button></li>
+                            <li><Button onClick={this.spanThreeMonths}>3m</Button></li>
+                            <li><Button onClick={this.spanYear}>1y</Button></li>
+                            <li><Button onClick={this.spanFiveYears}>5y</Button></li>
                         </ul>
-                            {/* we need multicolumn tables before this will work */}
-                            {/*<StockTable name={this.state.allStockCodes} stock={this.state.allStockCodes} stockCode={this.state.allStockCodes}/>*/}
+                        {/* we need multicolumn tables before this will work */}
+                        {/*<StockTable name={this.state.allStockCodes} stock={this.state.allStockCodes} stockCode={this.state.allStockCodes}/>*/}
                     </div>
                 </main>
             </div>

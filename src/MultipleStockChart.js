@@ -15,11 +15,12 @@ export default class MultipleStockChart extends React.Component {
 
         var dates = false;
 
+        var that = this;
+
         allStocks.forEach(
             function (stock, i) {
 
-                var currentStock = stock.slice(0, 7);
-                currentStock = currentStock.reverse();
+                var currentStock = stock.slice(0, that.props.span);
 
                 if (!dates) {
                     dates = currentStock.map(function (x) {
@@ -29,6 +30,9 @@ export default class MultipleStockChart extends React.Component {
                 var closePrice = currentStock.map(function (x) {
                     return x[4];
                 });
+
+                currentStock = currentStock.reverse();
+                dates = dates.reverse();
 
                 var color = colors[i % 5];
 

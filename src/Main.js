@@ -17,7 +17,8 @@ export default class MainPage extends React.Component {
         this.state = {
             netWorth: false,
             cash: '',
-            name: ''
+            name: '',
+            currentStock: 'AFG'
         };
         // var user = firebase.auth().currentUser;
         // this.state = {
@@ -28,6 +29,15 @@ export default class MainPage extends React.Component {
 
     updateState(stateChange) {
         this.setState(stateChange);
+    }
+
+    handleChange(event) {
+        var field = event.target.name;
+        var value = event.target.value;
+
+        var changes = {}; //object to hold changes
+        changes[field] = value; //change this field
+        this.setState(changes); //update state
     }
 
     // If user is not authenticated, show login page
@@ -46,16 +56,16 @@ export default class MainPage extends React.Component {
                         var fullName = '';
                         var userNameRef = firebase.database().ref('users/' + user.uid + '/fullName');
                         userNameRef.once('value')
-                            .then(function(snapshot) {
+                            .then(function (snapshot) {
                                 fullName = snapshot.val();
                                 that.setState({
                                     name: fullName
                                 });
                             }
-                            ).then(function() {
+                            ).then(function () {
                                 var userCashRef = firebase.database().ref('users/' + user.uid + '/cash');
                                 userCashRef.once('value')
-                                    .then(function(snapshot) {
+                                    .then(function (snapshot) {
 
                                         // Cash assets
                                         var cashVal = snapshot.val();
@@ -72,8 +82,8 @@ export default class MainPage extends React.Component {
                                         // Stock assets (index 4 of the first array returned == losing price on the most recent day)
                                         var userStocksRef = firebase.database().ref('users/' + user.uid + '/stocks');
                                         userStocksRef.once('value')
-                                            .then(function(snapshot2) {
-                                                snapshot2.forEach(function(stock) {
+                                            .then(function (snapshot2) {
+                                                snapshot2.forEach(function (stock) {
                                                     var company = stock.key;
                                                     var quantity = stock.val();
                                                     var stockPrice = 0;
@@ -84,7 +94,7 @@ export default class MainPage extends React.Component {
 
                                                         fetch('https://www.quandl.com/api/v3/datasets/WIKI/' + company + '.json?api_key=_-huFRLBpt58XiqjyQyU')
                                                             .then(
-                                                            function(response) {
+                                                            function (response) {
                                                                 console.log('Response from ' + company);
                                                                 if (response.status !== 200) {
                                                                     console.log('Looks like there was a problem. Status Code: ' +
@@ -93,7 +103,7 @@ export default class MainPage extends React.Component {
                                                                 }
 
                                                                 // Examine the text in the response  
-                                                                response.json().then(function(data) {
+                                                                response.json().then(function (data) {
                                                                     stockPrice = data.dataset.data.slice(0, 1)[0][4];
 
                                                                     var totalValue = quantity * stockPrice;
@@ -103,7 +113,7 @@ export default class MainPage extends React.Component {
                                                                     return Promise.all([netWorthPromise]);
                                                                 });
                                                             })
-                                                            .catch(function(err) {
+                                                            .catch(function (err) {
                                                                 console.log('Fetch Error :-S', err);
                                                             });
                                                     }
@@ -125,8 +135,8 @@ export default class MainPage extends React.Component {
             <div>
                 <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                 <main role="main" id="loggedInMain">
-                    <PoliticalBar />
-                    <Timeline stock="AFG" />
+                    <PoliticalBar onChangeFunc={this.handleChange} />
+                    <Timeline stock={this.state.currentStock} />
                 </main>
             </div>
         );
