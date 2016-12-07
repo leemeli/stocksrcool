@@ -229,7 +229,7 @@ export default class PersonalTimeline extends React.Component {
 
         // if finished loading data:
         return (
-            <section role="region" id="personal-timeline">
+            <section role="region" id="personal-timeline-region">
                 <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                 <main role="main" id="personal-timeline">
                     <div>
