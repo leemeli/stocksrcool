@@ -5,6 +5,7 @@ import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 import MainPage from './Main';
 import firebase from 'firebase';
 import Settings from './Settings';
+import StockDisplay from './StockDisplay';
 import LoginPage from './Login';
 //can load other CSS files (e.g,. Bootstrap) here
 import 'bootstrap/dist/css/bootstrap.css';
@@ -30,8 +31,10 @@ ReactDOM.render(
       {/*<Route path="signin" component={SignInApp} />
       <Route path="signup" component={SignUpApp} />*/}
       <Route path="login" component={LoginPage} />
-      <Route path="main" component={MainPage} />
-      <Route path="settings" component={Settings} />
+      <Route path="main" component={MainPage} >
+        <IndexRoute component={StockDisplay}/>
+        <Route path="settings" component={Settings} />
+      </Route>
     </Route>
   </Router>,
   document.getElementById('root')

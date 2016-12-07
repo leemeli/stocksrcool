@@ -27,7 +27,6 @@ class Settings extends React.Component {
     render(){
         return(
             <div>
-                <Nav updateParent={this.updateState} />
                     <div id="settings">
                         <h3 className="text-center">Settings</h3>
                         <ul className="well list-unstyled center-block">

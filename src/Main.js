@@ -129,8 +129,7 @@ export default class MainPage extends React.Component {
             <div>
                 <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                 <main role="main" id="loggedInMain">
-                    <PoliticalBar />
-                    <Timeline stock="AFG" />
+                    {this.props.children}
                 </main>
             </div>
         );
