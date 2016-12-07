@@ -17,7 +17,8 @@ export default class Portfolio extends React.Component {
             noStocks: false,
             allStockObjects: [],
             allStockCodes: [],
-            tableItems: []
+            tableItems: [],
+            totalMarketValue: 0
         };
     }
 
@@ -78,6 +79,7 @@ export default class Portfolio extends React.Component {
                                         userStocksRef.once('value')
                                             .then(function (snapshot2) {
                                                 var itemArray = [];
+                                                var marketValue = 0;
                                                 snapshot2.forEach(function (stock) {
                                                     var company = stock.key;
                                                     var quantity = stock.val();
@@ -103,12 +105,13 @@ export default class Portfolio extends React.Component {
                                                                     console.log(data.dataset.data.slice(0, 1)); // Today's stock array
                                                                     console.log(data.dataset.data.slice(1, 2)); // Yesterday's stock array
                                                                     var totalValue = quantity * stockPrice;
+                                                                    marketValue += totalValue;
                                                                     netWorth += totalValue;
                                                                     console.log('New net worth: ' + netWorth);
                                                                     var netWorthPromise = netWorthRef.set(netWorth);
                                                                     var companyName = data.dataset.name;
                                                                     itemArray.push(<PortfolioTableRow key={companyName} quantity={quantity} name={companyName} stock={data.dataset.data} stockCode={company}/>);
-                                                                    that.setState({tableItems: itemArray});
+                                                                    that.setState({tableItems: itemArray, totalMarketValue: marketValue});
                                                                     return Promise.all([netWorthPromise]);
                                                                 });
                                                             })
@@ -132,6 +135,7 @@ export default class Portfolio extends React.Component {
 
     render() {
         var myItems = this.state.tableItems;
+        var stockWorth = (this.state.totalMarketValue).toFixed(2);
         console.log(myItems);
         if (myItems.length < 1) {
             return(
@@ -148,14 +152,15 @@ export default class Portfolio extends React.Component {
             <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
             <div className="container" id="personal-timeline">
             <h1 className="title">My Portfolio</h1>
-            <table className="table table-bordered table-hover" aria-live="polite">
+            <table className="table table-bordered table-hover stock-table" aria-live="polite">
                 <tbody>
                 <tr id="firstRow">
                     <th>Company</th>
                     <th>Symbol</th>
                     <th>QTY</th>
                     <th>Purchase Price</th> 
-                    <th>Current Price</th>
+                    <th>Current Value</th>
+                    <th>Total Current Value</th>
                     <th>Net Change</th>
                     <th>Total Net Change</th>
                     <th>% Change</th>
@@ -163,9 +168,9 @@ export default class Portfolio extends React.Component {
                     {/* Populate table with stock information from API here*/}
                     
                     {myItems}
-
                 </tbody>
              </table>
+             <h3>Stock Net Worth:  ${stockWorth}</h3>
              </div>
             </div>
         );
