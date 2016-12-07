@@ -5,7 +5,7 @@ import { Line } from 'react-chartjs-2';
 export default class StockChart extends React.Component {
     
     render() {    
-        var currentStocks = this.props.stock.slice(0, 7);
+        var currentStocks = this.props.stock.slice(0, this.props.span);
         var dates = currentStocks.map(function(x) {
             return x[0];
         });
@@ -15,6 +15,9 @@ export default class StockChart extends React.Component {
         var lowPrice = currentStocks.map(function (x) {
             return x[3];
         });
+        dates = dates.reverse();
+        highPrice = highPrice.reverse();
+        lowPrice = lowPrice.reverse();
         var data = {
             labels: dates,
             datasets: [{
