@@ -6,6 +6,8 @@ export default class StockChart extends React.Component {
     
     render() {    
         var currentStocks = this.props.stock.slice(0, 7);
+        currentStocks = currentStocks.reverse();
+        
         var dates = currentStocks.map(function(x) {
             return x[0];
         });

@@ -1,6 +1,6 @@
 import React from 'react';
 import Nav from './Nav';
-import StockChart from './StockChart';
+import MultipleStockChart from './MultipleStockChart';
 import { Button } from 'react-bootstrap';
 import StockTable from './StockTable';
 
@@ -12,7 +12,7 @@ export default class PersonalTimeline extends React.Component {
         super(props);
 
         this.state = {
-            stockCodes: ['AAPL', 'MSFT'],
+            stockCodes: ['AAPL', 'MSFT' ,'AFL'],
 
             allStockObjects: {},
             span: 7,
@@ -22,10 +22,13 @@ export default class PersonalTimeline extends React.Component {
 
             finished: false
         };
-        var companies = ['AAPL', 'MSFT'];
-        this.apiShoppingList(companies);
+        var companies = ['AAPL', 'MSFT', 'AFL'];
+        
 
+        this.apiShoppingList = this.apiShoppingList.bind(this);
         this.updateState = this.updateState.bind(this);
+
+        this.apiShoppingList(companies);
     }
 
     // Requests a bunch of companies to get data for
@@ -35,8 +38,9 @@ export default class PersonalTimeline extends React.Component {
         that.setState({
             allStockObjects: {}
         });
+        var stockObjects = [];
 
-        companies.forEach(function (stockCode) {
+        companies.forEach(function (stockCode, i) {
             fetch('https://www.quandl.com/api/v3/datasets/WIKI/' + stockCode + '.json?api_key=_-huFRLBpt58XiqjyQyU')
                 .then(
                 function (response) {
@@ -47,13 +51,18 @@ export default class PersonalTimeline extends React.Component {
 
                     // Examine the text in the response  
                     response.json().then(function (data) {
-                        console.log(data);
-                        // that.setState(
-                        //     {
-                        //         allStockObjects[stockCode] = data
-                        //     }
-                        // );
-                        console.log('ALL STOCK OBJECTS: ') + this.state.allStockObjects;
+                        
+                        stockObjects[stockCode] = data.dataset.data;
+
+                        if (i == companies.length - 1) {
+                            console.log('Final stock object!');
+                            that.setState({
+                                allStockObjects: stockObjects,
+                                finished: true
+                            });
+                            console.log(that.state.allStockObjects);
+                        }
+
                         // currentStock.setState({ stock: data.dataset.data, company: data.dataset.name, stockCode: data.dataset.dataset_code });
                     });
                 }
@@ -94,11 +103,9 @@ export default class PersonalTimeline extends React.Component {
                                         // Cash assets
                                         var cashVal = snapshot.val();
 
-                                        that.setState(
-                                            {
-                                                cash: (cashVal).toFixed(2),
-                                            }
-                                        );
+                                        that.setState({
+                                            cash: (cashVal).toFixed(2),
+                                        });
                                     });
                             })
                     }
@@ -119,15 +126,22 @@ export default class PersonalTimeline extends React.Component {
 
     render() {
 
+        // If loading data hasn't finished, show loading:
         if (!this.state.finished) {
-            return (<p>Loading...</p>)
+            return (
+                <div>
+                    <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
+                    <p className="text-center">Loading...</p>
+                </div>
+            );
         }
 
+        // if finished loading data:
         return (
             <div>
                 <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                 <div>
-                    <StockChart name="My Timeline" stock={this.state.stock} />
+                    <MultipleStockChart name="My Timeline" stocks={this.state.allStockObjects} />
                     <ul className="timeline well" id="timelineGraph">
                         <li><strong>View:</strong></li>
                         <li><Button onClick={this.changeTimeSpan}>1d</Button></li>
@@ -140,22 +154,6 @@ export default class PersonalTimeline extends React.Component {
                     </ul>
                 </div>
             </div>
-
-
-            // <div>
-            //     <StockChart name="My Timeline" stock={this.state.stock} />
-            //     <ul className="timeline well" id="timelineGraph">
-            //         <li><strong>View:</strong></li>
-            //         <li><Button onClick={this.changeTimeSpan}>1d</Button></li>
-            //         <li><Button onClick={this.changeTimeSpan}>1w</Button></li>
-            //         <li><Button onClick={this.changeTimeSpan}>1m</Button></li>
-            //         <li><Button onClick={this.changeTimeSpan}>3m</Button></li>
-            //         <li><Button onClick={this.changeTimeSpan}>1y</Button></li>
-            //         <li><Button onClick={this.changeTimeSpan}>5y</Button></li>
-            //         <li><Button onClick={this.changeTimeSpan}>Max</Button></li>
-            //     </ul>
-            //     <StockTable name={this.state.company} stock={this.state.stock} stockCode={this.state.stockCode} />
-            // </div>
         );
     }
 }
