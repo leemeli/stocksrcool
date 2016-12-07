@@ -22,6 +22,8 @@
 
 > Clicking "My Portfolio" will show your gains and losses for certain stocks!
 
+> By default, there is no preference for political affiliation. Clicking the Democrat or Republican tab guarantees that any new searches will search for either Democrat or Republican companies.
+
 > Clicking "My Timeline" will, after loading from an API, show every stock that the user has purchased on a graph constructed by Chart.js! You're able to choose a timeframe to see how those stocks have changed over time.
 
 > Settings allows the user the freedom to change their name.

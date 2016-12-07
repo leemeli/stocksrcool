@@ -80,14 +80,14 @@ export default class PersonalTimeline extends React.Component {
                         stockNames.push(data.dataset.name);
 
                         if (stockObjects.length === codes.length) {
-                            console.log('Final stock object!');
+                            //console.log('Final stock object!');
                             that.setState({
                                 allStockObjects: stockObjects,
                                 allStockCodes: stockCodes,
                                 allStockNames: stockNames,
                                 finished: true
                             });
-                            console.log(that.state.allStockObjects);
+                            //console.log(that.state.allStockObjects);
                         }
 
                         // currentStock.setState({ stock: data.dataset.data, company: data.dataset.name, stockCode: data.dataset.dataset_code });
@@ -158,7 +158,7 @@ export default class PersonalTimeline extends React.Component {
 
                                     if (stockCode && validQuantity) {
                                         allStockCodes.push(stockCode);
-                                        console.log('Pushed', stockCode);
+                                        //console.log('Pushed', stockCode);
                                         that.setState({
                                             lastLoaded: (' ' + stockCode + ' done!')
                                         });

@@ -283,6 +283,18 @@ class StockTableRow extends React.Component {
         // Political affiliation colors
         var affiliation = this.state.affiliation;
         var affiliationStyle = '';
+
+        var hiddenStyle = '';
+
+        var faction = this.props.faction;
+        if (faction) {
+            if (faction !== 'np') {
+                if (faction !== affiliation) {
+                    hiddenStyle = 'hidden-row';
+                }
+            }
+        }
+
         switch(affiliation) {
             case 'd':
                 affiliation = 'Democrat';
@@ -298,12 +310,14 @@ class StockTableRow extends React.Component {
                 break;
         }
 
+        
+
         // Total cost of buying/selling stocks
         var totalCost = (closePrice * this.state.quantity).toFixed(2);
 
         return (
-            <tr>
-                <td>{this.props.stockCode}</td>
+            <tr className={hiddenStyle}>
+                {/*<td>{this.props.stockCode}</td>*/}
                 <td>{shortName}</td>
                 <td className={affiliationStyle}>{affiliation}</td>
                 <td>${closePrice}</td>

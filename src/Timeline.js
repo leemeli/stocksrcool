@@ -7,7 +7,6 @@ export default class Timeline extends React.Component {
     constructor(props) {
         super(props);
         this.state = {stock:{}, company:"", stockCode: "", span: 7};
-        this.getData = this.getData.bind(this);
         this.spanDay = this.spanDay.bind(this);
         this.spanWeek = this.spanWeek.bind(this);
         this.spanMonth = this.spanMonth.bind(this);
@@ -15,12 +14,13 @@ export default class Timeline extends React.Component {
         this.spanYear = this.spanYear.bind(this);
         this.spanFiveYears = this.spanFiveYears.bind(this);
         this.spanMonth = this.spanMonth.bind(this);
-        
-        this.getData();
+        // console.log(this.props.stock);
+        this.componentWillReceiveProps();
     }
 
+    
 
-    getData() {
+    componentWillReceiveProps() {
         var currentStock = this;
         fetch('https://www.quandl.com/api/v3/datasets/WIKI/'+this.props.stock+'.json?api_key=_-huFRLBpt58XiqjyQyU')
             .then(
@@ -33,7 +33,7 @@ export default class Timeline extends React.Component {
 
                 // Examine the text in the response  
                 response.json().then(function (data) {
-                    console.log(data);
+                    // console.log(data);
                     currentStock.setState({stock: data.dataset.data, company: data.dataset.name, stockCode: data.dataset.dataset_code});
                 });
             }
@@ -63,8 +63,6 @@ export default class Timeline extends React.Component {
     }
 
     render() {
-        
-        // console.log(Object.keys(this.state.stock).length);
         if (Object.keys(this.state.stock).length < 1) {
             return(<p>Loading...</p>)
         }
@@ -81,7 +79,7 @@ export default class Timeline extends React.Component {
                     <li><Button onClick={this.spanYear}>1y</Button></li>
                     <li><Button onClick={this.spanFiveYears}>5y</Button></li>
                 </ul>
-                <StockTable name={this.state.company} stock={this.state.stock} stockCode={this.state.stockCode}/>
+                <StockTable name={this.state.company} stock={this.state.stock} stockCode={this.state.stockCode} additionalStocks={this.props.additionalStocks} faction={this.props.faction}/>
             </section>
         );
     }

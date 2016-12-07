@@ -264,7 +264,7 @@ footer a:hover {
     width: 90%;
 }
 .stock-table {
-    width: 80%;
+    width: 100%;
 }
 
  @media (min-width: 510px) {
@@ -439,10 +439,13 @@ footer a:hover {
 strong {
     margin-right: 1em;
 }
-.democrat {
+.no-preference, .no-preference:hover {
+    background-color: rgb(230, 230, 230);
+}
+.democrat, .democrat:hover {
     background-color: rgb(193, 217, 255);
 }
-.republican {
+.republican, .republican:hover {
     background-color: rgb(254, 194, 199);
 }
 .settings-option {
@@ -484,4 +487,13 @@ strong {
 
 .redBox {
     background-color: #ffa0a0;
+}
+.hidden-row {
+    display: none;
+}
+.selected {
+    border: 2px solid rgba(100, 100, 100, 0.5);
+}
+.not-selected {
+    border: 2px solid rgba(0, 0, 0, 0);
 }
