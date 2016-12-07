@@ -1,7 +1,7 @@
 {
   "name": "data-browser",
   "author": "Melody Lee, Michael Lew, Andrew Vuong, Dillon Byron",
-  "homepage": "https://github.com/leemeli/stocksrcool/build",
+  "homepage": "https://leemeli.github.io/stocksrcool/build/",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -31,6 +31,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   }
 }
