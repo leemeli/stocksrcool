@@ -218,11 +218,6 @@ footer a:hover {
         padding-left: 0;
         font-size: 14px;
     }
-    .welcome-back {
-         visibility: hidden;
-         width: 0;
-         height: 0;
-     }
 }
 
 #leftSidebar {
@@ -472,4 +467,12 @@ strong {
     color: black;
     font-size: 24pt;
     padding: 0.5em;
+}
+
+.greenBox {
+    background-color: #c1f2c9;
+}
+
+.redBox {
+    background-color: #ffa0a0;
 }
