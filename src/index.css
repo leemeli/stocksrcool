@@ -360,6 +360,10 @@ footer a:hover {
     }
 }
 
+#searchBar {
+    width: 200px;
+}
+
 @media (min-width: 1500px) {
     body {
         font-size: 1vw;

@@ -32,7 +32,9 @@ export default class MainPage extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({currentStock: event.target.value});
+        var searchBarVal = document.getElementById('searchBar').value;
+        console.log(searchBarVal);
+        this.setState({currentStock: searchBarVal});
     }
 
     handleClick() {

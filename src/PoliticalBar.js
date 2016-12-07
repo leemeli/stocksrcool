@@ -30,14 +30,17 @@ export default class PoliticalBar extends React.Component {
         this.setState({ np: 'selected', d: 'not-selected', r: 'not-selected' });
     }
 
+    noUpdate(event){
+        event.preventDefault();
+    }
 
     render() {
         return (
             <section role="region" id="politicalBar">
-                <form className="navbar-form navbar-right" role="search">
+                <form className="navbar-form navbar-right" role="search" onSubmit={(e) => this.noUpdate(e)}>
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Search" name="currentStock" onChange={this.props.change} />
-                        <button type="submit" className="btn">Submit</button>
+                        <input id="searchBar" type="text" className="form-control" placeholder="Search by symbol (ex. AAPL)" name="currentStock" />
+                        <button type="submit" className="btn" onClick={this.props.change}>Search</button>
                     </div>
                 </form>
             </section>
