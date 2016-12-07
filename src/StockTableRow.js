@@ -217,7 +217,13 @@ class StockTableRow extends React.Component {
                                 console.log('New stock count: ' + newStockCount);
                                 console.log('New cash: ' + newMoneyValue);
 
-                                return Promise.all([stockPromise, cashPromise]); //do both at once!
+                                // Set the last purchased price for the stock:
+                                var userStockPriceRef = firebase.database().ref('users/' + user.uid + '/stockPrices/' + stockCode);
+                                var pricePromise = userStockPriceRef.set(stockPrice);
+
+
+
+                                return Promise.all([stockPromise, cashPromise, pricePromise]); //do both at once!
                             });
                     } else {
                         console.log('Inefficient funds! You have $' + cash + ', but the stocks you want to purchase cost $' + totalCost + '.');
