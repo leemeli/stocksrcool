@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
-import { Link, hashHistory } from 'react-router';
+import { Link } from 'react-router';
 // import {hashHistory} from 'react-router';
 
 export default class Nav extends React.Component {
@@ -26,12 +26,15 @@ export default class Nav extends React.Component {
                 {/*Sidebar*/}
                 <ul className="sidebar" id="leftSidebar">
                     <h1 className="title">Stocks R Us</h1>
+
                     <li className="welcome-back">Welcome back, {this.props.name}!</li>
                     <li className="cash">Cash: ${this.props.cash}</li>
-                    <li><a href="#main" className="text-uppercase">Home</a></li>
-                    <li><a href="#portfolio" className="text-uppercase">My Portfolio</a></li>
-                    <li><a href="#timeline" className="text-uppercase">My Timeline</a></li>
-                    <li><a href="#settings" className="text-uppercase">Settings</a></li>
+
+
+                    <li><Link to="/main" className="text-uppercase">Home</Link></li>
+                    <li><Link to="/portfolio" className="text-uppercase">My Portfolio</Link></li>
+                    <li><Link to="/mytimeline" className="text-uppercase">My Timeline</Link></li>
+                    <li><Link to="/settings" className="text-uppercase">Settings</Link></li>
                     <li><div className="logout">
                         <button className="btn btn-warning" onClick={() => this.signOut()}>Sign out</button>
                     </div></li>

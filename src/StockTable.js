@@ -4,8 +4,7 @@ import StockTableRow from './StockTableRow';
 export default class StockTable extends React.Component {
     render() { 
         return(
-            <div className="container">
-            <table className="table table-bordered table-hover" aria-live="polite">
+            <table className="table table-bordered table-hover stock-table" aria-live="polite">
                 <tbody>
                 <tr id="firstRow">
                     <th>Company</th>
@@ -20,7 +19,6 @@ export default class StockTable extends React.Component {
 
                 </tbody>
              </table>
-             </div>
         );
     }
 }
