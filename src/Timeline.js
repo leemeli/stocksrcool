@@ -8,7 +8,14 @@ export default class Timeline extends React.Component {
         super(props);
         this.state = {stock:{}, company:"", stockCode: "", span: 7};
         this.getData = this.getData.bind(this);
-        this.changeTimeSpan = this.changeTimeSpan.bind(this);
+        this.spanDay = this.spanDay.bind(this);
+        this.spanWeek = this.spanWeek.bind(this);
+        this.spanMonth = this.spanMonth.bind(this);
+        this.spanThreeMonths = this.spanThreeMonths.bind(this);
+        this.spanYear = this.spanYear.bind(this);
+        this.spanFiveYears = this.spanFiveYears.bind(this);
+        this.spanMonth = this.spanMonth.bind(this);
+        
         this.getData();
     }
 
@@ -36,8 +43,25 @@ export default class Timeline extends React.Component {
             });
     }
 
-    changeTimeSpan(x) {
-        this.setState({span: x});
+    spanDay() {
+        this.setState({span: 2});
+    }
+    spanWeek() {
+        this.setState({span: 7});
+        console.log("WOOOO")
+    }
+    spanMonth() {
+        this.setState({span: 30});
+        console.log("WOOOO")
+    }
+    spanThreeMonths() {
+        this.setState({span: 90});
+    }
+    spanYear() {
+        this.setState({span: 365});
+    }
+    spanFiveYears() {
+        this.setState({span: 1825});
     }
 
     render() {
@@ -49,19 +73,18 @@ export default class Timeline extends React.Component {
 
         return (
             <div>
-                <StockChart name={this.state.company} stock={this.state.stock}/>
-                <ul className="timeline well" id="timelineGraph">
-                    <li><strong>View:</strong></li>
-                    <li><Button onClick={this.changeTimeSpan}>1d</Button></li>
-                    <li><Button onClick={this.changeTimeSpan}>1w</Button></li>
-                    <li><Button onClick={this.changeTimeSpan}>1m</Button></li>
-                    <li><Button onClick={this.changeTimeSpan}>3m</Button></li>
-                    <li><Button onClick={this.changeTimeSpan}>1y</Button></li>
-                    <li><Button onClick={this.changeTimeSpan}>5y</Button></li>
-                    <li><Button onClick={this.changeTimeSpan}>Max</Button></li>
+                <StockChart name={this.state.company} span={this.state.span} stock={this.state.stock}/>
+                <ul className="timeline" id="timelineGraph">
+                    <li><Button onClick={this.spanDay}>1d</Button></li>
+                    <li><Button onClick={this.spanWeek}>1w</Button></li>
+                    <li><Button onClick={this.spanMonth}>1m</Button></li>
+                    <li><Button onClick={this.spanThreeMonths}>3m</Button></li>
+                    <li><Button onClick={this.spanYear}>1y</Button></li>
+                    <li><Button onClick={this.spanFiveYears}>5y</Button></li>
                 </ul>
                 <StockTable name={this.state.company} stock={this.state.stock} stockCode={this.state.stockCode}/>
             </div>
         );
     }
 }
+
