@@ -12,9 +12,10 @@ export default class PersonalTimeline extends React.Component {
         super(props);
 
         this.state = {
-            stockCodes: ['AAPL', 'MSFT' ,'AFL'],
+            stockCodes: [],
 
-            allStockObjects: {},
+            allStockObjects: [],
+            allStockCodes: [],
             span: 7,
 
             cash: '',
@@ -22,25 +23,28 @@ export default class PersonalTimeline extends React.Component {
 
             finished: false
         };
-        var companies = ['AAPL', 'MSFT', 'AFL'];
         
 
         this.apiShoppingList = this.apiShoppingList.bind(this);
         this.updateState = this.updateState.bind(this);
 
-        this.apiShoppingList(companies);
+        
     }
 
-    // Requests a bunch of companies to get data for
-    // Companies list should not include stocks where the user has 0 of the stock
-    apiShoppingList(companies) {
+    // Requests a bunch of stock codes to get data for
+    // Stock codes list should not include stocks where the user has 0 of the stock
+    apiShoppingList(codes) {
         var that = this;
         that.setState({
-            allStockObjects: {}
+            allStockObjects: [],
+            allStockCodes: []
         });
         var stockObjects = [];
+        var stockCodes = [];
 
-        companies.forEach(function (stockCode, i) {
+        console.log('API shopping list initiated');
+
+        codes.forEach(function (stockCode, i) {
             fetch('https://www.quandl.com/api/v3/datasets/WIKI/' + stockCode + '.json?api_key=_-huFRLBpt58XiqjyQyU')
                 .then(
                 function (response) {
@@ -52,12 +56,14 @@ export default class PersonalTimeline extends React.Component {
                     // Examine the text in the response  
                     response.json().then(function (data) {
                         
-                        stockObjects[stockCode] = data.dataset.data;
+                        stockObjects.push(data.dataset.data);
+                        stockCodes.push(data.dataset.dataset_code);
 
-                        if (i == companies.length - 1) {
+                        if (stockObjects.length == codes.length) {
                             console.log('Final stock object!');
                             that.setState({
                                 allStockObjects: stockObjects,
+                                allStockCodes: stockCodes,
                                 finished: true
                             });
                             console.log(that.state.allStockObjects);
@@ -80,11 +86,36 @@ export default class PersonalTimeline extends React.Component {
     // If user is not authenticated, show login page
     componentWillMount() {
         var that = this;
+        
+
+        var allStockCodes = [];
+
         firebase.auth().onAuthStateChanged(
             user => {
                 if (user) {
                     if (user.email !== null) {
                         console.log("You're logged in as", user.email);
+
+                        var stocksRef = firebase.database().ref('users/' + user.uid + '/stocks');
+                        stocksRef.once('value')
+                            .then(function(snapshot) {
+                                var stockCompanyCount = Object.keys(snapshot).length;
+                                console.log('SCC', stockCompanyCount);
+                                snapshot.forEach(function(stock) {
+                                    var stockCode = stock.key;
+                                    var validQuantity = stock.val() > 0;
+                                    if (stockCode && validQuantity) {
+                                        allStockCodes.push(stockCode);
+                                        console.log('Pushed ', stockCode);
+                                        if (allStockCodes.length == stockCompanyCount) {
+                                            that.setState({
+                                                stockCodes: allStockCodes
+                                            });
+                                            that.apiShoppingList(that.state.stockCodes);
+                                        }
+                                    }
+                                });
+                            });
 
                         var fullName = '';
                         var userNameRef = firebase.database().ref('users/' + user.uid + '/fullName');
@@ -107,7 +138,7 @@ export default class PersonalTimeline extends React.Component {
                                             cash: (cashVal).toFixed(2),
                                         });
                                     });
-                            })
+                            });
                     }
                 } else {
                     console.log('Not logged in, redirecting to login page');
@@ -141,7 +172,7 @@ export default class PersonalTimeline extends React.Component {
             <div>
                 <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                 <div>
-                    <MultipleStockChart name="My Timeline" stocks={this.state.allStockObjects} />
+                    <MultipleStockChart name="My Timeline (closing prices)" stocks={this.state.allStockObjects} stockCodes={this.state.allStockCodes}/>
                     <ul className="timeline well" id="timelineGraph">
                         <li><strong>View:</strong></li>
                         <li><Button onClick={this.changeTimeSpan}>1d</Button></li>
@@ -152,6 +183,10 @@ export default class PersonalTimeline extends React.Component {
                         <li><Button onClick={this.changeTimeSpan}>5y</Button></li>
                         <li><Button onClick={this.changeTimeSpan}>Max</Button></li>
                     </ul>
+                    <div className="stocklist">
+                        {/* we need multicolumn tables before this will work */}
+                        {/*<StockTable name={this.state.allStockCodes} stock={this.state.allStockCodes} stockCode={this.state.allStockCodes}/>*/}
+                    </div>
                 </div>
             </div>
         );

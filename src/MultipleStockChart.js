@@ -6,33 +6,40 @@ export default class MultipleStockChart extends React.Component {
 
     render() {
 
+        var colors = ['red', 'orange', 'green', 'blue', 'purple'];
+
         var allStocks = this.props.stocks;
+        var stockCodes = this.props.stockCodes;
 
         var stockDatasets = [];
 
         var dates = false;
 
-        for (var stock in allStocks) {
+        allStocks.forEach(
+            function (stock, i) {
 
-            var currentStock = stock.slice(0, 7);
-            currentStock = currentStock.reverse();
+                var currentStock = stock.slice(0, 7);
+                currentStock = currentStock.reverse();
 
-            if (!dates) {
-                dates = currentStock.map(function (x) {
-                    return x[0];
+                if (!dates) {
+                    dates = currentStock.map(function (x) {
+                        return x[0];
+                    });
+                }
+                var closePrice = currentStock.map(function (x) {
+                    return x[4];
+                });
+
+                var color = colors[i % 5];
+
+                stockDatasets.push({
+                    label: stockCodes[i],
+                    data: closePrice,
+                    borderColor: colors[i % colors.length],
+                    backgroundColor: 'rgba(0, 0, 0, 0)'
                 });
             }
-            var closePrice = currentStock.map(function (x) {
-                return x[4];
-            });
-
-            stockDatasets.push({
-                label: Object.keys(stock),
-                data: closePrice,
-                borderColor: "rgba(58,178,76,0.4)",
-                backgroundColor: "rgba(58,178,76,0.0)"
-            });
-        }
+        );
 
         var data = {
             labels: dates,
