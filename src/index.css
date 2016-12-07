@@ -208,6 +208,7 @@ footer a:hover {
 /*When the window size changes, the graph gets exponentially large*/
 .stock-chart {
     color: white;
+    width: 500px;
     /*height: 900px;*/
 }
 
@@ -249,15 +250,21 @@ footer a:hover {
 #loggedInMain {
     position: absolute;
     left: 0;
-    top: 250px;
+    top: 350px;
     z-index: 0;
     margin: 15px;
     width: 90%;
  }
+.stock-chart {
+    width: 90%;
+}
+.stock-table {
+    width: 80%;
+}
 
  @media (min-width: 510px) {
      #loggedInMain {
-         top: 200px;
+         top: 250px;
      }
  }
 
@@ -275,19 +282,28 @@ footer a:hover {
         position: relative;
         left: 300px;
         top: 20px;
-        width: 500px;
+        width: 400px;
     }
-}
+    .stock-chart, .stock-table {
+        width: 400px;
+    }
 
-@media (min-width: 989px) {
-    #loggedInMain {
-        left: 400px;
+}
+@media (min-width: 986px) {
+     #loggedInMain {
+         width: 586px;
+     }
+     .stock-chart, .stock-table {
+        width: 586px;
     }
 }
 
 @media (min-width: 1200px) {
-    #loggedInMain {
-        left: 500px;
+     #loggedInMain {
+         width: 786px;
+     }
+     .stock-chart, .stock-table {
+        width: 786px;
     }
 }
 
@@ -297,8 +313,20 @@ footer a:hover {
         font-size: 1.5vw;
     }
     #loggedInMain {
-        left: 30%;
-        width: 40%;
+        left: 23%;
+         width: 1086px;
+     }
+     .stock-chart, .stock-table {
+        width: 1086px;
+    }
+}
+
+@media (min-width: 2000px) {
+     #loggedInMain {
+         width: 1286px;
+     }
+     .stock-chart, .stock-table {
+        width: 1286px;
     }
 }
 

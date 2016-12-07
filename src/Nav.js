@@ -31,7 +31,7 @@ export default class Nav extends React.Component {
                     <li className="cash">Cash: ${this.props.cash}</li>
 
 
-                    <li><Link to="/main" className="text-uppercase">Main</Link></li>
+                    <li><Link to="/main" className="text-uppercase">Home</Link></li>
                     <li><Link to="/portfolio" className="text-uppercase">My Portfolio</Link></li>
                     <li><Link to="/mytimeline" className="text-uppercase">My Timeline</Link></li>
                     <li><Link to="/settings" className="text-uppercase">Settings</Link></li>
