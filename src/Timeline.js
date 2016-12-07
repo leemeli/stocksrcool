@@ -48,11 +48,9 @@ export default class Timeline extends React.Component {
     }
     spanWeek() {
         this.setState({span: 7});
-        console.log("WOOOO")
     }
     spanMonth() {
         this.setState({span: 30});
-        console.log("WOOOO")
     }
     spanThreeMonths() {
         this.setState({span: 90});
@@ -66,7 +64,7 @@ export default class Timeline extends React.Component {
 
     render() {
         
-        console.log(Object.keys(this.state.stock).length);
+        // console.log(Object.keys(this.state.stock).length);
         if (Object.keys(this.state.stock).length < 1) {
             return(<p>Loading...</p>)
         }

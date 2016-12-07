@@ -41,7 +41,6 @@ export default class MainPage extends React.Component {
                         console.log("You're logged in as", user.email);
 
                         // Reevaluate user's net worth when the user is here:
-                        var netWorth = 0;
 
                         var fullName = '';
 
@@ -63,7 +62,6 @@ export default class MainPage extends React.Component {
 
                                         // Cash assets
                                         var cashVal = snapshot.val();
-                                        netWorth += cashVal;
 
                                         that.setState(
                                             {
