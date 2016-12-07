@@ -6,8 +6,7 @@ import { Button } from 'react-bootstrap';
 import PersonalStockTable from './PersonalStockTable';
 
 import firebase from 'firebase';
-import { hashHistory } from 'react-router';
-import { Link } from 'react-router';
+import { hashHistory, Link } from 'react-router';
 
 
 export default class PersonalTimeline extends React.Component {
@@ -80,7 +79,7 @@ export default class PersonalTimeline extends React.Component {
                         stockCodes.push(data.dataset.dataset_code);
                         stockNames.push(data.dataset.name);
 
-                        if (stockObjects.length == codes.length) {
+                        if (stockObjects.length === codes.length) {
                             console.log('Final stock object!');
                             that.setState({
                                 allStockObjects: stockObjects,
@@ -125,7 +124,7 @@ export default class PersonalTimeline extends React.Component {
     }
 
     // If user is not authenticated, show login page
-    componentWillMount() {
+    componentDidMount() {
         var that = this;
 
 
@@ -169,7 +168,7 @@ export default class PersonalTimeline extends React.Component {
                                     currentChecks++;
                                     // console.log(currentChecks);
                                     // console.log(stockCompanyCount);
-                                    if (currentChecks == stockCompanyCount) {
+                                    if (currentChecks === stockCompanyCount) {
                                         that.setState({
                                             stockCodes: allStockCodes
                                         });

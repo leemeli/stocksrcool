@@ -292,6 +292,10 @@ class StockTableRow extends React.Component {
                 affiliation = 'Republican';
                 affiliationStyle = 'republican';
                 break;
+            default:
+                affiliation = 'Unknown';
+                affiliationStyle = '';
+                break;
         }
 
         // Total cost of buying/selling stocks
@@ -365,7 +369,7 @@ class StockTableRow extends React.Component {
                         </div>
                     }
                 </td>
-                <td>{this.state.count}</td>
+                {/*<td>{this.state.count}</td>*/}
             </tr>
         )
     }

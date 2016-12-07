@@ -15,14 +15,9 @@ export default class StockTable extends React.Component {
                         <th>Close Price</th> 
                         <th>Net Change</th>
                         <th>Buy and Sell</th>
-                        <th>Owned</th>
                     </tr>
                         {/* Populate table with stock information from API here*/}
                         
-                        <StockTableRow name={this.props.name} stock={this.props.stock} stockCode={this.props.stockCode}/>
-                        <StockTableRow name={this.props.name} stock={this.props.stock} stockCode={this.props.stockCode}/>
-                        <StockTableRow name={this.props.name} stock={this.props.stock} stockCode={this.props.stockCode}/>
-                        <StockTableRow name={this.props.name} stock={this.props.stock} stockCode={this.props.stockCode}/>
                         <StockTableRow name={this.props.name} stock={this.props.stock} stockCode={this.props.stockCode}/>
 
                     </tbody>

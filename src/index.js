@@ -7,6 +7,8 @@ import firebase from 'firebase';
 import Settings from './Settings';
 import LoginPage from './Login';
 import PersonalTimeline from './PersonalTimeline';
+import Portfolio from './Portfolio';
+
 //can load other CSS files (e.g,. Bootstrap) here
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -23,17 +25,16 @@ var config = {
 };
 firebase.initializeApp(config);
 
-//render the Application view
+//render the Application view with routes!
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={MainPage} />
-      {/*<Route path="signin" component={SignInApp} />
-      <Route path="signup" component={SignUpApp} />*/}
       <Route path="login" component={LoginPage} />
       <Route path="main" component={MainPage} />
       <Route path="settings" component={Settings} />
       <Route path="mytimeline" component={PersonalTimeline} />
+      <Route path="portfolio" component={Portfolio} />
     </Route>
   </Router>,
   document.getElementById('root')

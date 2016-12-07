@@ -3,10 +3,6 @@ import StockTableRow from './StockTableRow';
 
 export default class StockTable extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         var names = this.props.names;
         var stocks = this.props.stocks;
@@ -30,7 +26,6 @@ export default class StockTable extends React.Component {
                             <th>Close Price</th>
                             <th>Net Change</th>
                             <th>Buy and Sell</th>
-                            <th>Owned</th>
                         </tr>
                         {/* Populate table with stock information from API here*/}
 
