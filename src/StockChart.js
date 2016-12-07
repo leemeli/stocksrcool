@@ -36,9 +36,6 @@ export default class StockChart extends React.Component {
                 backgroundColor: "rgba(214,64,58,0.0)"
             }]
         }
-
-        var shortName = this.props.name.substr(0, this.props.name.indexOf('P'));
-
         return (
             <section className="container stock-chart" role="region" id="stock-chart-region">
                 <h2 className="stock-chart-title gentle-title">{name}</h2>

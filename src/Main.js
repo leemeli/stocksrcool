@@ -15,11 +15,16 @@ export default class MainPage extends React.Component {
             cash: '',
             name: '',
             currentStock: 'MSFT', 
-            val: ''
+            val: '',
+            faction: 'np'
         };
         this.updateState = this.updateState.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+
+        this.democrat = this.democrat.bind(this);
+        this.republican = this.republican.bind(this);
+        this.viewAll = this.viewAll.bind(this);
     }
 
     updateState(stateChange) {
@@ -71,51 +76,6 @@ export default class MainPage extends React.Component {
                                                 cash: (cashVal).toFixed(2),
                                             }
                                         );
-
-                                        // (this networth calculation has been moved to Portfolio, since that's where it's used!)
-                                        // var netWorthRef = firebase.database().ref('users/' + user.uid + '/netWorth');
-
-                                        // // Stock assets (index 4 of the first array returned == losing price on the most recent day)
-                                        // var userStocksRef = firebase.database().ref('users/' + user.uid + '/stocks');
-                                        // userStocksRef.once('value')
-                                        //     .then(function(snapshot2) {
-                                        //         snapshot2.forEach(function(stock) {
-                                        //             var company = stock.key;
-                                        //             var quantity = stock.val();
-                                        //             var stockPrice = 0;
-
-                                        //             console.log('Company: ' + company, 'Quantity: ' + quantity);
-
-                                        //             // If quantity is above 0, then include it in your net worth
-                                        //             if (quantity > 0) {
-
-                                        //                 fetch('https://www.quandl.com/api/v3/datasets/WIKI/' + company + '.json?api_key=_-huFRLBpt58XiqjyQyU')
-                                        //                     .then(
-                                        //                     function(response) {
-                                        //                         console.log('Response from ' + company);
-                                        //                         if (response.status !== 200) {
-                                        //                             console.log('Looks like there was a problem. Status Code: ' +
-                                        //                                 response.status);
-                                        //                             return;
-                                        //                         }
-
-                                        //                         // Examine the text in the response  
-                                        //                         response.json().then(function(data) {
-                                        //                             stockPrice = data.dataset.data.slice(0, 1)[0][4];
-
-                                        //                             var totalValue = quantity * stockPrice;
-                                        //                             netWorth += totalValue;
-                                        //                             console.log('New net worth: ' + netWorth);
-                                        //                             var netWorthPromise = netWorthRef.set(netWorth);
-                                        //                             return Promise.all([netWorthPromise]);
-                                        //                         });
-                                        //                     })
-                                        //                     .catch(function(err) {
-                                        //                         console.log('Fetch Error :-S', err);
-                                        //                     });
-                                        //             }
-                                        //         });
-                                        //     });
                                     });
                             });
                     }
@@ -127,6 +87,28 @@ export default class MainPage extends React.Component {
         );
     }
 
+    // Show only democrat companies!
+    democrat() {
+        console.log('Democrat!');
+        this.setState({
+            faction: 'd'
+        });
+    }
+    // Show only republican companies!
+    republican() {
+        console.log('Republican!');
+        this.setState({
+            faction: 'r'
+        });
+    }
+    // Show all companies!
+    viewAll() {
+        console.log('No preference!');
+        this.setState({
+            faction: 'np'
+        });
+    }
+
     render() {
         return (
             <div>
@@ -134,8 +116,8 @@ export default class MainPage extends React.Component {
                     <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                 </header>
                 <main role="main" id="loggedInMain">
-                    <PoliticalBar change={this.handleChange} />
-                    <Timeline stock={this.state.currentStock} additionalStocks="true"/>
+                    <PoliticalBar change={this.handleChange} oc1={this.democrat} oc2={this.republican} oc3={this.viewAll}/>
+                    <Timeline stock={this.state.currentStock} additionalStocks="true" faction={this.state.faction}/>
                     
                 </main>
             </div>

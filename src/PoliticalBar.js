@@ -4,37 +4,45 @@ export default class PoliticalBar extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.democrat = this.democrat.bind(this);
-        this.republican = this.republican.bind(this);
-        this.viewAll = this.viewAll.bind(this);
+        this.state = {
+            np: 'selected',
+            d: 'not-selected',
+            r: 'not-selected'
+        };
+        this.focusD = this.focusD.bind(this);
+        this.focusR = this.focusR.bind(this);
+        this.focusNP = this.focusNP.bind(this);
     }
 
-    // Show the first 5 democrat companies!
-    democrat() {
-        console.log('Democrat!');
-    }
-    // Show the first 5 republican companies!
-    republican() {
-        console.log('Republican!');
-    }
-    // Show all companies!
-    viewAll() {
-        console.log('No preference!');
+
+    // Focusing democrat styles
+    focusD() {
+        this.setState({ np: 'not-selected', d: 'selected', r: 'not-selected' });
     }
 
-    render(){
-        return(
+    // Focusing republican styles
+    focusR() {
+        this.setState({ np: 'not-selected', d: 'not-selected', r: 'selected' });
+    }
+
+    // Focusing no preference styles
+    focusNP() {
+        this.setState({ np: 'selected', d: 'not-selected', r: 'not-selected' });
+    }
+
+
+    render() {
+        return (
             <section role="region" id="politicalBar">
                 <ul className="nav nav-tabs">
-                <li role="presentation" className="active"><a onClick={this.viewAll}>View All</a></li>
-                <li role="presentation"><button className="democrat btn btn-lg" onClick={this.democrat}>Democrat</button></li>
-                <li role="presentation"><button className="republican btn btn-lg" onClick={this.republican}>Republican</button></li>
+                    <li role="presentation" className={this.state.np}><div className="no-preference btn btn-default btn-lg" onClick={()=>{ this.props.oc3(); this.focusNP() }}>View All</div></li>
+                    <li role="presentation" className={this.state.d}><div className="democrat btn btn-default btn-lg" onClick={()=>{ this.props.oc1(); this.focusD() }}>Democrat</div></li>
+                    <li role="presentation" className={this.state.r}><div className="republican btn btn-default btn-lg" onClick={()=>{ this.props.oc2(); this.focusR() }}>Republican</div></li>
                 </ul>
                 <form className="navbar-form navbar-right" role="search">
-                <div className="form-group">
-                    <input type="text" className="form-control" placeholder="Search" name="currentStock" onChange={this.props.change}/>
-                </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Search" name="currentStock" onChange={this.props.change} />
+                    </div>
                 </form>
             </section>
         );
