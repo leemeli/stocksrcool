@@ -30,9 +30,13 @@ export default class LoginPage extends React.Component {
         return (
             <div>
                 <div id="front">
-                    <h1 className="title frontTitle">Stocks R Us</h1>
-                    <SignInApp />
-                    <SignUpApp />
+                    <header role="banner">
+                        <h1 className="title frontTitle">Stocks R Us</h1>
+                    </header>
+                    <main role="main">
+                        <SignInApp />
+                        <SignUpApp />
+                    </main>
                 </div>
                 <About />
                 <Footer />

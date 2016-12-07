@@ -85,7 +85,7 @@ export default class SignInForm extends React.Component {
     var signInEnabled = (emailErrors.isValid && passwordErrors.isValid);
 
     return (
-      <div className="container">
+      <section className="container" id="sign-in-form-section" role="region">
         <form role="form" className="sign-in-form">
           <div id="col3" className="form-group sign-up-buttons">
             <button className="btn btn-primary" disabled={!signInEnabled} onClick={(e) => this.signIn(e)}>Login</button>
@@ -97,7 +97,7 @@ export default class SignInForm extends React.Component {
             <ValidatedInput field="email" type="email" label="Email"  tabIndex={1} changeCallback={this.handleChange} errors={emailErrors} />
           </div>
         </form>
-      </div>
+      </section>
     );
   }
 }

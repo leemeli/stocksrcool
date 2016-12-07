@@ -133,9 +133,11 @@ export default class MainPage extends React.Component {
     render() {
         return (
             <div>
-                <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
+                <header role="banner">
+                    <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
+                </header>
                 <main role="main" id="loggedInMain">
-                    <PoliticalBar onChangeFunc={this.handleChange} />
+                    <PoliticalBar onChange={this.handleChange} />
                     <Timeline stock={this.state.currentStock} />
                 </main>
             </div>

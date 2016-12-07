@@ -72,7 +72,7 @@ export default class Timeline extends React.Component {
         }
 
         return (
-            <div>
+            <section role="region" id="timeline-region">
                 <StockChart name={this.state.company} span={this.state.span} stock={this.state.stock}/>
                 <ul className="timeline well" id="timelineGraph">
                     <li><strong>View:</strong></li>
@@ -84,7 +84,7 @@ export default class Timeline extends React.Component {
                     <li><Button onClick={this.spanFiveYears}>5y</Button></li>
                 </ul>
                 <StockTable name={this.state.company} stock={this.state.stock} stockCode={this.state.stockCode}/>
-            </div>
+            </section>
         );
     }
 }

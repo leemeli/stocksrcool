@@ -209,27 +209,27 @@ export default class PersonalTimeline extends React.Component {
 
         if (this.state.noStocks) {
             return (
-                <div id="personal-timeline" className="text-center">
+                <section role="region" id="personal-timeline" className="text-center">
                     <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                     <div className="text-center go-buy-stocks gentle-title center-block">No stocks to view! Get out there and buy some stocks!</div>
                     <Link to="/main">Enter the market</Link>
-                </div>
+                </section>
             );
         }
 
         // If loading data hasn't finished, show loading:
         else if (!this.state.finished) {
             return (
-                <div id="personal-timeline">
+                <section role="region" id="personal-timeline">
                     <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                     <h2 className="text-center go-buy-stocks gentle-title center-block">Loading... {this.state.lastLoaded} </h2>
-                </div>
+                </section>
             );
         }
 
         // if finished loading data:
         return (
-            <div>
+            <section role="region" id="personal-timeline">
                 <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                 <main role="main" id="personal-timeline">
                     <div>
@@ -247,7 +247,7 @@ export default class PersonalTimeline extends React.Component {
                         {/*<StockTable name={this.state.allStockCodes} stock={this.state.allStockCodes} stockCode={this.state.allStockCodes}/>*/}
                     </div>
                 </main>
-            </div>
+            </section>
         );
     }
 }

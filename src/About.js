@@ -3,7 +3,7 @@ import React from 'react';
 class About extends React.Component {
     render() {
         return (
-            <div className="container" id="aboutPage">
+            <section className="container" id="aboutPage" role="region">
                 <div className="row header">
                     <h2>Start exploring our virtual stock market by signing up!</h2>
                 </div>
@@ -21,7 +21,7 @@ class About extends React.Component {
                         We <em>speculate</em> that you will become very knowledgable about the world of stocks and the political affiliations of their companies!
                     </p>
                 </div>
-            </div>
+            </section>
         );
     }
 

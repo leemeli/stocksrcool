@@ -61,9 +61,9 @@ export default class SignUpApp extends React.Component {
 
   render() {
     return (
-      <div id="signUpDiv">
+      <section id="signUpDiv" role="region">
         <SignUpForm signUpCallback={this.signUp} />
-      </div>);
+      </section>);
 
   }
 }

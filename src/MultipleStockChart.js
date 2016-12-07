@@ -51,10 +51,10 @@ export default class MultipleStockChart extends React.Component {
         };
 
         return (
-            <div className="container stock-chart">
+            <section className="container stock-chart" role="region">
                 <h2 className="stock-chart-title gentle-title">{this.props.name}</h2>
                 <Line data={data} width={70} height={50} options={{ maintainAspectRatio: true }} />
-            </div>
+            </section>
         )
     }
 }
