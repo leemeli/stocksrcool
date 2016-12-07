@@ -8,6 +8,7 @@ export default class StockTable extends React.Component {
                 <tbody>
                 <tr id="firstRow">
                     <th>Company</th>
+                    <th>Symbol</th>
                     <th>Affiliation</th>
                     <th>Close Price</th> 
                     <th>Net Change</th>

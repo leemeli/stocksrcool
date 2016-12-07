@@ -161,8 +161,8 @@ export default class Portfolio extends React.Component {
                     <th>Purchase Price</th> 
                     <th>Current Value</th>
                     <th>Total Current Value</th>
-                    <th>Net Change</th>
-                    <th>Total Net Change</th>
+                    <th>G/L (Per Stock)</th>
+                    <th>Total G/L</th>
                     <th>% Change</th>
                 </tr>
                     {/* Populate table with stock information from API here*/}

@@ -296,10 +296,12 @@ class StockTableRow extends React.Component {
 
         // Total cost of buying/selling stocks
         var totalCost = (closePrice * this.state.quantity).toFixed(2);
+        var stockCode = this.props.stockCode;
 
         return (
             <tr>
                 <td>{shortName}</td>
+                <td>{stockCode}</td>
                 <td className={affiliationStyle}>{affiliation}</td>
                 <td>${closePrice}</td>
                 <td className={netChangeStyle}>{netChange}%</td>
