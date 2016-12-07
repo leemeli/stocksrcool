@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from './Nav';
 import PoliticalBar from './PoliticalBar';
 import Timeline from './Timeline';
+
 import firebase from 'firebase';
 import { hashHistory } from 'react-router';
 
@@ -13,9 +14,12 @@ export default class MainPage extends React.Component {
             netWorth: false,
             cash: '',
             name: '',
-            currentStock: 'AFG'
+            currentStock: 'MSFT', 
+            val: ''
         };
         this.updateState = this.updateState.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     updateState(stateChange) {
@@ -23,12 +27,11 @@ export default class MainPage extends React.Component {
     }
 
     handleChange(event) {
-        var field = event.target.name;
-        var value = event.target.value;
+        this.setState({currentStock: event.target.value});
+    }
 
-        var changes = {}; //object to hold changes
-        changes[field] = value; //change this field
-        this.setState(changes); //update state
+    handleClick() {
+        this.setState({currentStock: this.state.val});
     }
 
     // If user is not authenticated, show login page
@@ -131,8 +134,9 @@ export default class MainPage extends React.Component {
                     <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
                 </header>
                 <main role="main" id="loggedInMain">
-                    <PoliticalBar onChange={this.handleChange} />
-                    <Timeline stock={this.state.currentStock} />
+                    <PoliticalBar change={this.handleChange} />
+                    <Timeline stock={this.state.currentStock} additionalStocks="true"/>
+                    
                 </main>
             </div>
         );

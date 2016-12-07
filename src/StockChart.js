@@ -3,11 +3,11 @@ import { Line } from 'react-chartjs-2';
 
 
 export default class StockChart extends React.Component {
-    
+
     render() {
         var currentStocks = this.props.stock.slice(0, this.props.span);
 
-        var dates = currentStocks.map(function(x) {
+        var dates = currentStocks.map(function (x) {
             return x[0];
         });
         var highPrice = currentStocks.map(function (x) {
@@ -21,7 +21,6 @@ export default class StockChart extends React.Component {
         lowPrice = lowPrice.reverse();
 
         var name = this.props.name;
-        var shortName = name.substr(0, name.indexOf('('));
 
         var data = {
             labels: dates,
@@ -38,11 +37,13 @@ export default class StockChart extends React.Component {
             }]
         }
 
-        return(
+        var shortName = this.props.name.substr(0, this.props.name.indexOf('P'));
+
+        return (
             <section className="container stock-chart" role="region" id="stock-chart-region">
-                <h2 className="stock-chart-title gentle-title">{shortName}</h2>
-                <Line data={data} width={70} height={50} options={{maintainAspectRatio: true}}/>
+                <h2 className="stock-chart-title gentle-title">{name}</h2>
+                <Line data={data} width={70} height={50} options={{ maintainAspectRatio: true }} />
             </section>
-        )
+                )
     }
 }

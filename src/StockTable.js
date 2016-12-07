@@ -1,5 +1,6 @@
 import React from 'react';
 import StockTableRow from './StockTableRow';
+import AdditionalStocks from './AdditionalStocks';
 
 export default class StockTable extends React.Component {
 
@@ -19,8 +20,12 @@ export default class StockTable extends React.Component {
                         {/* Populate table with stock information from API here*/}
                         
                         <StockTableRow name={this.props.name} stock={this.props.stock} stockCode={this.props.stockCode}/>
+                        
 
                     </tbody>
+                    {this.props.additionalStocks === "true" &&
+                        <AdditionalStocks />
+                    }
                 </table>
             </section>
         );
