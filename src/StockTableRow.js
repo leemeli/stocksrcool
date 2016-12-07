@@ -288,6 +288,9 @@ class StockTableRow extends React.Component {
                 break;
         }
 
+        // Total cost of buying/selling stocks
+        var totalCost = (closePrice * this.state.quantity).toFixed(2);
+
         return (
             <tr>
                 <td>{shortName}</td>
@@ -308,6 +311,9 @@ class StockTableRow extends React.Component {
                         <div>
                             <h4>How many would you like to buy?</h4>
                             <p>You currently have {this.state.count} {/* space */}of this stock.</p>
+                            {totalCost > 0.00 &&
+                                <p className="purchase-info">Buying {this.state.quantity} of this stock will cost you about ${totalCost}!</p>
+                            }
                             <div>
                                 <div>
                                     <label>Enter amount</label>
@@ -326,6 +332,7 @@ class StockTableRow extends React.Component {
                         <div>
                             <h4>How many would you like to sell?</h4>
                             <p>You currently have {this.state.count} {/* space */}of this stock.</p>
+                            <p className="purchase-info">You can sell {this.state.quantity} of this stock for ${totalCost}!</p>
                             <div>
                                 <div>
                                     <label>Enter amount</label>
