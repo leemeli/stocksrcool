@@ -162,7 +162,7 @@ export default class PersonalTimeline extends React.Component {
             return (
                 <div>
                     <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
-                    <p className="text-center">Loading...</p>
+                    <h2 className="text-center">Loading...</h2>
                 </div>
             );
         }
@@ -171,7 +171,7 @@ export default class PersonalTimeline extends React.Component {
         return (
             <div>
                 <Nav updateParent={this.updateState} cash={this.state.cash} name={this.state.name} />
-                <div>
+                <main role="main" id="personal-timeline">
                     <MultipleStockChart name="My Timeline (closing prices)" stocks={this.state.allStockObjects} stockCodes={this.state.allStockCodes}/>
                     <ul className="timeline well" id="timelineGraph">
                         <li><strong>View:</strong></li>
@@ -187,7 +187,7 @@ export default class PersonalTimeline extends React.Component {
                         {/* we need multicolumn tables before this will work */}
                         {/*<StockTable name={this.state.allStockCodes} stock={this.state.allStockCodes} stockCode={this.state.allStockCodes}/>*/}
                     </div>
-                </div>
+                </main>
             </div>
         );
     }

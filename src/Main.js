@@ -48,7 +48,7 @@ export default class MainPage extends React.Component {
                         userNameRef.once('value')
                             .then(function(snapshot) {
                                 fullName = snapshot.val();
-                                that.setState( {
+                                that.setState({
                                     name: fullName
                                 });
                             }
@@ -60,8 +60,6 @@ export default class MainPage extends React.Component {
                                         // Cash assets
                                         var cashVal = snapshot.val();
                                         netWorth += cashVal;
-
-
 
                                         that.setState(
                                             {
@@ -113,8 +111,6 @@ export default class MainPage extends React.Component {
                                             });
                                     });
                             });
-
-
                     }
                 } else {
                     console.log('Not logged in, redirecting to login page');
