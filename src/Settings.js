@@ -14,6 +14,7 @@ class Settings extends React.Component {
         };
 
         this.updateState = this.updateState.bind(this);
+        this.bankruptcyWarning = this.bankruptcyWarning.bind(this);
     }
 
     updateState(stateChange) {
@@ -22,14 +23,20 @@ class Settings extends React.Component {
 
     // File for bankruptcy!
     bankruptcy() {
-
+         var user = firebase.auth().currentUser;
+         var userCashRef = firebase.database().ref('users/' + user.uid + '/cash');
+         var userStockRef = firebase.database().ref('users/' + user.uid + '/stocks');
+         var userWorthRef = firebase.database().ref('users/' + user.uid + '/netWorth');
+         userStockRef.set([]);
+         userCashRef.set(5000);
+         userWorthRef.set(5000);
     }
 
     // Warns the user that they are about to file for bankruptcy
     bankruptcyWarning() {
         this.setState(
             {
-                warning: 'bankruptcy'
+                warning: true
             }
         );
     }
@@ -84,7 +91,13 @@ class Settings extends React.Component {
                     <h3 className="text-center">Settings</h3>
                     <ul className="well list-unstyled center-block">
                         <li><span className="bold">Name</span>: your name <span className="settings-option">(change name)</span></li>
-                        <li id="deactivateBtn"><button type="button" className="btn btn-xs btn-danger" onClick={this.bankruptcyWarning}>File for bankruptcy</button></li>
+                        <li id="deactivateBtn"><button type="button" className="btn btn-danger" onClick={this.bankruptcyWarning}>File for bankruptcy</button></li>
+                    {this.state.warning &&
+                        <li><div className="text-danger">
+                            Are you sure? Filing for bankruptcy will reset your account. You will lose all of your current stocks.<br/>
+                            <a onClick={this.bankruptcy}>Yes, reset my account!</a>
+                        </div></li>
+                    }
                     </ul>
                 </div>
             </div>
