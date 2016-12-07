@@ -74,7 +74,8 @@ export default class Timeline extends React.Component {
         return (
             <div>
                 <StockChart name={this.state.company} span={this.state.span} stock={this.state.stock}/>
-                <ul className="timeline" id="timelineGraph">
+                <ul className="timeline well" id="timelineGraph">
+                    <li><strong>View:</strong></li>
                     <li><Button onClick={this.spanDay}>1d</Button></li>
                     <li><Button onClick={this.spanWeek}>1w</Button></li>
                     <li><Button onClick={this.spanMonth}>1m</Button></li>

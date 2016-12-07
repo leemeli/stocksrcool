@@ -446,3 +446,18 @@ strong {
 .purchase-info {
     color: blue;
 }
+.settings-option {
+    cursor: pointer;
+}
+.bankruptcy-button {
+    font-weight: bold;
+    color: red;
+    cursor: pointer;
+}
+.cancel-bankruptcy-button {
+    cursor: pointer;
+    margin-top: 1em;
+    color: black;
+    font-size: 24pt;
+    padding: 0.5em;
+}
