@@ -252,7 +252,16 @@ footer a:hover {
     color: white;
 }
 
-#loggedInMain, #personal-timeline, #portfolio {
+#settings {
+    position: absolute;
+    line-height: 30px;
+    left: 250px;
+    top: 300px;
+    width: 80%;
+}
+
+
+#loggedInMain, #personal-timeline, #portfolio, #settings {
     position: absolute;
     left: 0;
     z-index: 0;
@@ -263,12 +272,15 @@ footer a:hover {
 .stock-chart {
     width: 90%;
 }
+#settings {
+    width: 90%;
+}
 .stock-table {
     width: 100%;
 }
 
  @media (min-width: 510px) {
-     #loggedInMain, #personal-timeline, #portfolio {
+     #loggedInMain, #personal-timeline, #portfolio,  #settings {
          top: 250px;
      }
  }
@@ -283,7 +295,7 @@ footer a:hover {
         padding: 0;
         padding-top: 5vh;
     }
-    #loggedInMain, #personal-timeline, #portfolio {
+    #loggedInMain, #personal-timeline, #portfolio, #settings {
         position: relative;
         left: 300px;
         top: 20px;
@@ -297,7 +309,7 @@ footer a:hover {
     }
 }
 @media (min-width: 850px) {
-    #loggedInMain, #personal-timeline, #portfolio {
+    #loggedInMain, #personal-timeline, #portfolio,  #settings {
         width: 500px;
     }
     .stock-chart, .stock-table {
@@ -305,7 +317,7 @@ footer a:hover {
     }
 }
 @media (min-width: 986px) {
-     #loggedInMain, #personal-timeline, #portfolio {
+     #loggedInMain, #personal-timeline, #portfolio,  #settings {
          width: 586px;
      }
      .stock-chart, .stock-table {
@@ -327,13 +339,9 @@ footer a:hover {
         width: 20%;
         font-size: 1.5vw;
     }
-    #loggedInMain, #personal-timeline, #portfolio {
+    #loggedInMain, #personal-timeline, #portfolio,  #settings {
         left: 23%;
         width: 1086px;
-     }
-     #settings {
-         position: absolute;
-         left: 40%;
      }
      #portfolio {
          left: 15%;
@@ -344,7 +352,7 @@ footer a:hover {
 }
 
 @media (min-width: 2000px) {
-     #loggedInMain, #personal-timeline, #portfolio {
+     #loggedInMain, #personal-timeline, #portfolio,  #settings {
          width: 1286px;
      }
      .stock-chart, .stock-table {
@@ -405,30 +413,6 @@ footer a:hover {
     text-transform: uppercase;
 }*/
 
-#settings {
-    position: absolute;
-    line-height: 30px;
-    left: 250px;
-    top: 300px;
-    width: 80%;
-}
-
-@media (min-width: 768px) {
-    #settings {
-        position: relative;
-        left: 300px;
-        top: 20px;
-        width: 500px;
-    }
-}
-
-@media (min-width: 989px) {
-    #settings {
-        left: 300px;
-        top: 20px;
-        width: 700px;
-    }
-}
 
 #deactivateBtn {
     text-align: center;
