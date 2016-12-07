@@ -37,6 +37,7 @@ export default class PoliticalBar extends React.Component {
                 <form className="navbar-form navbar-right" role="search">
                     <div className="form-group">
                         <input type="text" className="form-control" placeholder="Search" name="currentStock" onChange={this.props.change} />
+                        <button type="submit" className="btn">Submit</button>
                     </div>
                 </form>
             </section>

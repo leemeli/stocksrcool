@@ -16,7 +16,8 @@ export default class MainPage extends React.Component {
             name: '',
             currentStock: 'MSFT', 
             val: '',
-            faction: 'np'
+            faction: 'np',
+            additionalStocks: true
         };
         this.updateState = this.updateState.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -32,7 +33,7 @@ export default class MainPage extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({currentStock: event.target.value});
+        this.setState({currentStock: event.target.value, additionalStocks: false});
     }
 
     handleClick() {
@@ -117,7 +118,7 @@ export default class MainPage extends React.Component {
                 </header>
                 <main role="main" id="loggedInMain">
                     <PoliticalBar change={this.handleChange} oc1={this.democrat} oc2={this.republican} oc3={this.viewAll}/>
-                    <Timeline stock={this.state.currentStock} additionalStocks="true" faction={this.state.faction}/>
+                    <Timeline stock={this.state.currentStock} additionalStocks={this.state.additionalStocks} faction={this.state.faction}/>
                     
                 </main>
             </div>
