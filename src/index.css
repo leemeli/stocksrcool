@@ -384,7 +384,7 @@ footer a:hover {
     position: absolute;
     line-height: 30px;
     left: 10%;
-    top: 400px;
+    top: 300px;
     width: 80%;
 }
 
@@ -427,4 +427,5 @@ strong {
 .settings-option {
     font-style: italic;
     color: blue;
+    padding-left: 40px;
 }

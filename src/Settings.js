@@ -9,11 +9,16 @@ class Settings extends React.Component {
         super(props);
         this.state = {
             warning: false,
+            changeName: false,
             cash: '',
             name: ''
         };
 
         this.updateState = this.updateState.bind(this);
+        this.bankruptcyWarning = this.bankruptcyWarning.bind(this);
+        this.nameChangeClick = this.nameChangeClick.bind(this);
+        this.confirmNameChange = this.confirmNameChange.bind(this);
+        this.bankruptcy = this.bankruptcy.bind(this);
     }
 
     updateState(stateChange) {
@@ -22,16 +27,68 @@ class Settings extends React.Component {
 
     // File for bankruptcy!
     bankruptcy() {
-
+         var user = firebase.auth().currentUser;
+         var userCashRef = firebase.database().ref('users/' + user.uid + '/cash');
+         var userStockRef = firebase.database().ref('users/' + user.uid + '/stocks');
+         var userWorthRef = firebase.database().ref('users/' + user.uid + '/netWorth');
+         userStockRef.set([]);
+         userCashRef.set(5000);
+         userWorthRef.set(5000);
+         this.forceUpdate();
+         this.setState(
+            {
+                cash: 5000
+            }
+        );
     }
 
     // Warns the user that they are about to file for bankruptcy
     bankruptcyWarning() {
+        if (!this.state.warning){
+            this.setState(
+                {
+                    warning: true
+                }
+            );
+        }
+        else {
+            this.setState(
+                {
+                    warning: false
+                }
+            );
+        }
+    }
+
+    confirmNameChange(event){
+        var user = firebase.auth().currentUser;
+        var userNameRef = firebase.database().ref('users/' + user.uid + '/fullName');
+        var nameValue = document.getElementById("nameBox").value;
+        userNameRef.set(nameValue);
+        this.forceUpdate();
         this.setState(
             {
-                warning: 'bankruptcy'
+                changeName: false,
+                name: nameValue
             }
         );
+    }
+
+    nameChangeClick(){
+        if (!this.state.changeName){
+            this.setState(
+                {
+                    changeName: true
+                }
+            );
+        }
+        else {
+            this.setState(
+                {
+                    changeName: false
+                }
+            );
+        }
     }
 
     // If user is not authenticated, show login page
@@ -83,8 +140,21 @@ class Settings extends React.Component {
                 <div id="settings">
                     <h3 className="text-center">Settings</h3>
                     <ul className="well list-unstyled center-block">
-                        <li><span className="bold">Name</span>: your name <span className="settings-option">(change name)</span></li>
-                        <li id="deactivateBtn"><button type="button" className="btn btn-xs btn-danger" onClick={this.bankruptcyWarning}>File for bankruptcy</button></li>
+                        <li><span className="bold">Name</span>: {this.state.name}<a className="settings-option" onClick={this.nameChangeClick}>(change name)</a></li>
+                         {this.state.changeName &&
+                            <li><div className="text-danger">
+                               <input field="fullName" type="text" id="nameBox"/>
+                               <button type="button" className="btn" onClick={this.confirmNameChange}>Change Name</button>
+                            </div></li>
+                        }
+                         <li><span className="bold">Your Cash</span>: {this.state.cash}</li>
+                        <li id="deactivateBtn"><button type="button" className="btn btn-danger" onClick={this.bankruptcyWarning}>File for bankruptcy</button></li>
+                    {this.state.warning &&
+                        <li><div className="text-danger">
+                            Are you sure? Filing for bankruptcy will reset your account. You will lose all of your current stocks.<br/>
+                            <a onClick={this.bankruptcy}>Yes, reset my account!</a>
+                        </div></li>
+                    }
                     </ul>
                 </div>
             </div>
